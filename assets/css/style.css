@@ -185,7 +185,7 @@ a {
   content: '';
   position: absolute;
   inset: -2px;
-  background: linear-gradient(135deg, rgba(53, 208, 255, 0.6), rgba(255, 126, 226, 0.6));
+  background: linear-gradient(135deg, rgba(2, 185, 241, 0.8), rgba(251, 69, 211, 0.8));
   filter: blur(18px);
   opacity: 0.5;
   z-index: -1;
