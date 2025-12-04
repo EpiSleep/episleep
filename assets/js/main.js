@@ -1,19 +1,21 @@
+const BASE_PATH = '../';
+
 function renderLayout(active) {
   const header = document.getElementById('site-header');
   const footer = document.getElementById('site-footer');
   if (header) {
     header.innerHTML = `
       <div class="navbar">
-        <a class="brand" href="index.html" aria-label="Accueil NIRD">
+        <a class="brand" href="${BASE_PATH}home/" aria-label="Accueil NIRD">
           <span>NIRD</span>
           <small>Numérique Indépendant & Résilient</small>
         </a>
         <nav class="nav-links" aria-label="Navigation principale">
-          ${link('index.html', 'Accueil', active === 'home')}
-          ${link('femmes-info.html', 'Femmes & Info', active === 'femmes')}
-          ${link('decathlon.html', 'Décathlon', active === 'decathlon')}
-          ${link('cve-explorer.html', 'CVE Explorer', active === 'cve')}
-          ${link('ergonomie.html', "L'ergonomie", active === 'ergonomie')}
+          ${link(`${BASE_PATH}home/`, 'Accueil', active === 'home')}
+          ${link(`${BASE_PATH}femmes-info/`, 'Femmes & Info', active === 'femmes')}
+          ${link(`${BASE_PATH}decathlon/`, 'Décathlon', active === 'decathlon')}
+          ${link(`${BASE_PATH}cve-explorer/`, 'CVE Explorer', active === 'cve')}
+          ${link(`${BASE_PATH}ergonomie/`, "L'ergonomie", active === 'ergonomie')}
         </nav>
         <a class="cta" href="https://www.nuitdelinfo.com" target="_blank" rel="noreferrer">Oh les beaux boutons</a>
       </div>
