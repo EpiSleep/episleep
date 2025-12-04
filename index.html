@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub Retro - Nuit du Jeu</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="scanlines">
+  <div class="page-shell grid-overlay">
+    <div class="wave-bg"></div>
+    <header class="badge-row">
+      <span class="pill"><span class="glow-dot"></span>Build 0.1 — Base Arcade</span>
+      <span class="pill"><span class="glow-dot"></span>8 devs ready</span>
+      <span class="pill"><span class="glow-dot"></span>DA: Oh les beaux boutons</span>
+    </header>
+
+    <main class="hero card neon-border">
+      <div class="logo">Retro Quest Hub</div>
+      <h1>Une page d'accueil 100% jeu, zéro corporate.</h1>
+      <p>
+        Entre, choisis ta quête et lance la construction. Pas de navbar, pas de footer
+        classique : ici tout est un écran de jeu. Les néons, les boutons chunky et les
+        modales suffisent pour voyager entre les niveaux.
+      </p>
+      <div class="actions">
+        <a class="btn" href="level-select.html">Jouer</a>
+        <button class="btn secondary" id="openSettings">Paramètres</button>
+        <button class="btn secondary" id="openCredits">Crédits</button>
+      </div>
+
+      <div class="tile-grid">
+        <div class="tile">
+          <p class="section-title">Missions</p>
+          <div class="tag"><span class="glow-dot"></span>Femmes & Info</div>
+          <div class="tag"><span class="glow-dot"></span>Décathlon</div>
+          <div class="tag"><span class="glow-dot"></span>CVE Explorer</div>
+          <div class="tag"><span class="glow-dot"></span>Ergonomie</div>
+        </div>
+        <div class="tile">
+          <p class="section-title">Structure prête</p>
+          <p class="body">
+            Arborescence découpée par défi, assets séparés, base CSS/JS commune et modales
+            réutilisables. Branche tes assets et tes mini-jeux directement.
+          </p>
+        </div>
+        <div class="tile">
+          <p class="section-title">Note DA</p>
+          <p class="body">Buttons néon inspirés du défi « Oh les beaux boutons ».</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal">
+    <div class="modal">
+      <header>
+        <h3>Paramètres rapides</h3>
+        <button class="close-btn" aria-label="Fermer">✕</button>
+      </header>
+      <div class="body">
+        <p>Placeholders pour tes réglages : audio, shaders, accessibilité, sauvegardes.</p>
+        <div class="form-grid">
+          <div class="form-control">
+            <label for="audio">Volume master</label>
+            <input id="audio" type="range" min="0" max="100" value="80" />
+          </div>
+          <div class="form-control">
+            <label for="retro">Vibes rétro</label>
+            <select id="retro">
+              <option>CRT + scanlines</option>
+              <option>Pixel sharp</option>
+              <option>Mode clair (bientôt)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="creditsModal">
+    <div class="modal">
+      <header>
+        <h3>Crédits & équipe</h3>
+        <button class="close-btn" aria-label="Fermer">✕</button>
+      </header>
+      <div class="body">
+        <p>Hub construit pour préparer les défis de la Nuit de l'Info.</p>
+        <ul>
+          <li>DA : Oh les beaux boutons (défi 485)</li>
+          <li>Équipe : 8 builders prêts à brancher leurs jeux</li>
+          <li>Tech : HTML/CSS/JS vanilla, modales réutilisables, niveau scroll horizontal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

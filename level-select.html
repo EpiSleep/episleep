@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Level Select</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/level-select.css" />
+</head>
+<body class="scanlines">
+  <div class="page-shell grid-overlay">
+    <div class="wave-bg"></div>
+    <div class="game-header game-header--wide">
+      <div class="logo">Level Select</div>
+      <div class="actions">
+        <a class="btn icon-btn" href="#" aria-label="Close level selection">✕</a>
+      </div>
+    </div>
+    <section class="level-stage card neon-border">
+      <div class="stage-wrapper">
+        <div class="stage-track">
+          <div class="track-grid"></div>
+          <div class="stage-node" data-level-id="femmes-info" style="top: 34%; left: 8%;">
+            <div class="node-label">Women &amp; IT</div>
+            <button class="node-btn"></button>
+          </div>
+          <div class="stage-node" data-level-id="decathlon" style="top: 70%; left: 30%;">
+            <div class="node-label">Decathlon</div>
+            <button class="node-btn"></button>
+          </div>
+          <div class="stage-node" data-level-id="cve-explorer" style="top: 26%; left: 56%;">
+            <div class="node-label">CVE Explorer</div>
+            <button class="node-btn"></button>
+          </div>
+          <div class="stage-node" data-level-id="ergonomie" style="top: 72%; left: 82%;">
+            <div class="node-label">Ergonomics</div>
+            <button class="node-btn"></button>
+          </div>
+        </div>
+      </div>
+      <p class="body" style="margin-top: 16px; color: var(--muted);">Hold the left mouse button and drag to explore the map.</p>
+    </section>
+  </div>
+
+  <div class="modal-backdrop">
+    <div class="modal" id="levelModal">
+      <header>
+        <h3>Mission Briefing</h3>
+        <button class="close-btn" aria-label="Close modal">✕</button>
+      </header>
+      <img src="/assets/img/placeholder.png" alt="Image du niveau" loading="lazy" />
+      <div class="body">Review the mission details and press Play when you are ready.</div>
+      <div class="actions">
+        <a class="btn play-btn" href="#">Play</a>
+        <button class="btn secondary close-btn">Maybe later</button>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/level-select.js"></script>
+</body>
+</html>
