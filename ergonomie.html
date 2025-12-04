@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'ergonomie – NIRD</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="ergonomie">
+  <header id="site-header"></header>
+  <main>
+    <section class="hero">
+      <div class="badge">Défi 444</div>
+      <h1>L'ergonomie : déjouer les dark patterns</h1>
+      <p>
+        Un formulaire qui fait tout pour vous piéger : boutons trompeurs, cases pré-cochées, textes ambigus. L'idée est
+        de sensibiliser à ces pratiques pour mieux les repérer et les bannir. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit.
+      </p>
+      <a class="cta" href="https://www.nuitdelinfo.com/inscription/defis/444" target="_blank" rel="noreferrer">Voir le défi</a>
+    </section>
+
+    <section style="margin-top:24px;" class="form-card">
+      <h2>Formulaire peu fair-play</h2>
+      <div class="dark-pattern">
+        <div>
+          <label for="username">Choisis ton alias</label>
+          <input id="username" type="text" placeholder="Tape ici... ou pas">
+          <p class="tip">Le bouton pour valider n'est pas celui que tu crois.</p>
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <button style="flex:1; filter: grayscale(1);" aria-label="bouton faux">Annuler et vendre mes données</button>
+            <button style="flex:1;">Continuer</button>
+          </div>
+        </div>
+        <div class="trick">
+          <p><strong>Case cachée :</strong> Ce consentement est pré-coché et se confond avec le fond.</p>
+          <label style="display:flex; align-items:center; gap:8px; color: var(--muted);">
+            <input type="checkbox" checked style="accent-color: var(--accent-2); opacity:0.3;"> J'accepte de recevoir des pop-ups surprises
+          </label>
+        </div>
+        <div class="trick">
+          <p><strong>Mini jeu :</strong> Pour voir le vrai bouton, passe ta souris ici.</p>
+          <div style="position:relative; min-height:80px;" class="placeholder-embed" aria-hidden="true">
+            <button style="position:absolute; bottom:12px; right:12px;">Le bon bouton</button>
+          </div>
+        </div>
+      </div>
+      <p class="notice" style="margin-top:16px;">Le but est de montrer ce qu'il ne faut pas faire : chaque piège devra être documenté puis désamorcé.</p>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
