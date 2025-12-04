@@ -228,15 +228,9 @@ a {
   position: relative;
   width: 2400px;
   height: 420px;
-  background: linear-gradient(90deg,
-    rgba(53, 208, 255, 0.14) 0%,
-    rgba(255, 126, 226, 0.14) 12%,
-    rgba(53, 208, 255, 0.14) 26%,
-    rgba(255, 126, 226, 0.14) 44%,
-    rgba(53, 208, 255, 0.14) 62%,
-    rgba(255, 126, 226, 0.14) 80%,
-    rgba(53, 208, 255, 0.14) 100%);
-  background-size: 400px 400px;
+  background-image: url('../images/level-select-bg.png');
+  background-size: cover;
+  background-position: center;
   border-radius: 14px;
   border: 1px dashed rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
@@ -276,19 +270,27 @@ a {
 }
 
 .node-btn {
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: linear-gradient(135deg, rgba(53, 208, 255, 0.16), rgba(255, 126, 226, 0.16));
-  color: #fff;
+  background: transparent;
+  background-image: url('../images/button.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  box-shadow: none;
+  min-width: 120px;
+  height: 40px;
+  padding: 8px 16px;
+  color: #03131f;
   font-weight: 600;
+  font-size: 12px;
   cursor: pointer;
-  transition: transform 0.12s ease, border-color 0.12s ease;
+  transition: none;
 }
 
 .node-btn:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.4);
+  background-image: url('../images/button-pressed.png');
+  transform: none;
+  border-color: transparent;
 }
 
 .modal-backdrop {
@@ -451,6 +453,25 @@ a {
   gap: 12px;
   flex-wrap: wrap;
   color: var(--muted);
+}
+
+.btn.play-btn {
+  background: transparent;
+  background-image: url('../images/button.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: none;
+  box-shadow: none;
+  width: 220px;
+  height: 64px;
+  padding: 0;
+  color: #03131f;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.btn.play-btn:hover {
+  background-image: url('../images/button-pressed.png');
 }
 
 @media (max-width: 720px) {
