@@ -108,6 +108,11 @@ a {
   flex-direction: column;
 }
 
+#closeBar{
+  align-items: end;
+  margin-top: 0px;
+}
+
 .btn {
   padding: 35px 20px;
   border-radius: 12px;
@@ -234,7 +239,7 @@ a {
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   overflow: auto;
-  padding: 24px;
+  padding: 0px;
   box-shadow: var(--shadow);
 }
 
@@ -486,6 +491,15 @@ a {
 }
 .btn.play-btn:hover {
   background-image: url('../images/button-pressed.png');
+}
+
+#closeGame{
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  text-align: center;
+  margin: 20px 0px;
+  font-size: 24px;
 }
 
 @media (max-width: 720px) {
