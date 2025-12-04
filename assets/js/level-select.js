@@ -35,10 +35,31 @@ const levelData = [
 
 function renderModal(content) {
   const modal = document.querySelector('#levelModal');
+  if (!modal) {
+    console.warn('Modal element (#levelModal) not found.');
+    return;
+  }
   const body = modal.querySelector('.body');
   const heading = modal.querySelector('h3');
   const image = modal.querySelector('img');
   const playBtn = modal.querySelector('.play-btn');
+
+  if (!heading) {
+    console.warn('Heading element (h3) not found in modal.');
+    return;
+  }
+  if (!body) {
+    console.warn('Body element (.body) not found in modal.');
+    return;
+  }
+  if (!image) {
+    console.warn('Image element (img) not found in modal.');
+    return;
+  }
+  if (!playBtn) {
+    console.warn('Play button element (.play-btn) not found in modal.');
+    return;
+  }
 
   heading.textContent = content.title;
   body.textContent = content.description;
@@ -46,7 +67,11 @@ function renderModal(content) {
   image.alt = content.title;
   playBtn.href = content.link;
 
-  modal.parentElement.classList.add('active');
+  if (modal.parentElement) {
+    modal.parentElement.classList.add('active');
+  } else {
+    console.warn('Modal parent element not found.');
+  }
 }
 
 function bindNodes() {
