@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil du jeu</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script defer src="assets/js/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="logo" href="index.html">Nuit de l'Info</a>
+        <nav aria-label="Navigation principale">
+          <a href="index.html">Accueil</a>
+          <a href="game-home.html">Jeu</a>
+          <a href="level-select.html">Niveaux</a>
+          <a href="challenges/femmes-info.html">Femmes &amp; info</a>
+          <a href="challenges/decathlon.html">Décathlon</a>
+          <a href="challenges/cve-explorer.html">CVE Explorer</a>
+          <a href="challenges/ergonomie.html">Ergonomie</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Prêt·e à jouer ?</h1>
+        <p>
+          Cette page servira de point de départ pour le jeu principal. Les boutons ci-dessous
+          pointent déjà vers les sections essentielles, à compléter avec votre logique et vos assets.
+        </p>
+        <div class="btn-row" style="margin-top:18px;">
+          <a class="btn" href="level-select.html">Jouer</a>
+          <a class="btn secondary" href="#parametres">Paramètres</a>
+          <a class="btn secondary" href="#credits">Crédits</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card" id="parametres">
+          <h2>Paramètres</h2>
+          <p>Prévoir ici le réglage des contrôles, du son ou des préférences d'accessibilité.</p>
+          <div class="callout">Espace réservé : intégrer vos composants JS et formulaires.</div>
+        </div>
+        <div class="card" id="credits">
+          <h2>Crédits</h2>
+          <p>Ajoutez la liste de l'équipe, les remerciements et les sources utilisées.</p>
+          <div class="callout">Espace réservé : timeline, avatars, liens.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>Accueil du jeu • Boutons prêts à relier</span>
+        <div class="footer-links">
+          <a href="level-select.html">Niveaux</a>
+          <a href="index.html">Retour accueil</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
