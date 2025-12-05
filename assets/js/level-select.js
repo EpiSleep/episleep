@@ -333,7 +333,6 @@ function renderDefaultModal(content) {
 
 
     if (content.video && video) {
-        const videoBtn = actions.querySelector('.video-toggle');
         // Nettoyer l'écouteur précédent si nécessaire (bonne pratique)
         const oldVideoBtn = actions.querySelector('.video-toggle');
         if (oldVideoBtn) oldVideoBtn.replaceWith(oldVideoBtn.cloneNode(true));
@@ -346,9 +345,47 @@ function renderDefaultModal(content) {
                 newVideoBtn.textContent = "Pause ⏸";
             } else {
                 video.pause();
-                videoBtn.textContent = "Play Video ▶";
+                newVideoBtn.textContent = "Play Video ▶";
             }
         });
+
+        // Add event listener for when video actually starts playing
+        // This is specifically for the Women & IT game
+        if (content.id === 'femmes-info') {
+            let hasCompletedFromVideo = false;
+
+            video.addEventListener('play', () => {
+                console.log('▶️ Women & IT video started playing in modal');
+                if (!hasCompletedFromVideo) {
+                    hasCompletedFromVideo = true;
+                    const wasNew = completeGame('woman');
+
+                    if (wasNew) {
+                        console.log('🎥 Video played - Women & IT game completed from modal!');
+
+                        // Show success notification
+                        const notification = document.createElement('div');
+                        notification.style.cssText = 'position: fixed; top: 20px; right: 20px; background: rgba(0,255,0,0.95); color: #000; padding: 15px 25px; border-radius: 8px; font-weight: bold; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.3);';
+                        notification.textContent = '🎉 Women & IT Completed!';
+                        document.body.appendChild(notification);
+
+                        // Update badges immediately
+                        setTimeout(() => {
+                            updateProgressAndBadges();
+                        }, 100);
+
+                        // Remove notification after 3 seconds
+                        setTimeout(() => {
+                            notification.style.opacity = '0';
+                            notification.style.transition = 'opacity 0.5s';
+                            setTimeout(() => notification.remove(), 500);
+                        }, 3000);
+                    } else {
+                        console.log('ℹ️  Women & IT game was already completed');
+                    }
+                }
+            });
+        }
     }
 
   if (modal.parentElement) {
