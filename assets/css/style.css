@@ -690,6 +690,35 @@ a {
   left: 160px;
 }
 
+.stars{
+  position: absolute;
+}
+
+#s1{
+  top: 0%;
+  left: 0%;
+}
+
+#s2{
+  top: 0%;
+  left: 0%;
+}
+
+#s3{
+  top: 0%;
+  left: 0%;
+}
+
+#s4{
+  top: 0%;
+  left: 0%;
+}
+
+#s5{
+  top: 0%;
+  left: 0%;
+}
+
 /* --- Bouton PLAY (Violet / Principal) --- */
 #levelModal .play-btn {
     background: linear-gradient(135deg, #7b2cbf, #9d4edd); /* Joli dégradé violet */
