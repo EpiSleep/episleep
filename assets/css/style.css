@@ -666,6 +666,30 @@ a {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.medal{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+/*#women{
+  left: 25%
+}*/
+
+#decat{
+  left: 60px;
+}
+
+#cve{
+  left: 110px;
+}
+
+#ergo{
+  left: 160px;
+}
+
 /* --- Bouton PLAY (Violet / Principal) --- */
 #levelModal .play-btn {
     background: linear-gradient(135deg, #7b2cbf, #9d4edd); /* Joli dégradé violet */
