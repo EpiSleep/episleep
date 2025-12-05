@@ -2,20 +2,15 @@
 // 1. DATA ET STRUCTURE DU QCM (11 questions)
 // ====================================================================
 
-// Structure des données des niveaux (fournie par l'utilisateur)
+// Structure des données des niveaux
 const levelData = [
   {
     id: 'femmes-info',
     title: 'Women & IT',
     description: 'A narrative adventure highlighting the heroines of computing. Videos, quizzes, and interactive archives await.',
     cta: 'Discover the challenge',
-<<<<<<< HEAD
-    image: 'https://dummyimage.com/900x400/2b3a67/ffffff&text=Women+%26+IT',
-=======
     image: 'assets/images/femme.png',
-    // EXEMPLE: Ajoutez votre chemin vidéo ici. Si vide, l'image s'affiche.
     video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
->>>>>>> main
     link: '/games/femmes-info/index.html'
   },
   {
@@ -24,7 +19,7 @@ const levelData = [
     description: 'Sporty mini-games fused with micro-optimization challenges. Get your algorithms and sneakers ready!',
     cta: 'Load the map',
     image: 'https://dummyimage.com/900x400/173f2d/ffffff&text=Decathlon',
-    link: '/games/decathlon/index.html' // Lien par défaut
+    link: '/games/decathlon/index.html'
   },
   {
     id: 'cve-explorer',
@@ -44,7 +39,6 @@ const levelData = [
   }
 ];
 
-<<<<<<< HEAD
 // Variable pour stocker les réponses du QCM
 let decathlonResponses = {};
 let currentQuestionIndex = 0;
@@ -166,65 +160,6 @@ const qcmData = [
 // ====================================================================
 // 2. FONCTIONS DE LOGIQUE QCM ET PROFIL
 // ====================================================================
-=======
-function renderModal(content) {
-  const modal = document.querySelector('#levelModal');
-  if (!modal) return;
-
-  const body = modal.querySelector('.body');
-  const heading = modal.querySelector('h3');
-  const image = modal.querySelector('img');
-  const video = modal.querySelector('video');
-  
-  const oldPlayBtn = modal.querySelector('.play-btn');
-  if (!oldPlayBtn) return;
-  const playBtn = oldPlayBtn.cloneNode(true);
-  oldPlayBtn.parentNode.replaceChild(playBtn, oldPlayBtn);
-
-  heading.textContent = content.title;
-  body.textContent = content.description;
-
-  // --- PARTIE IMAGE : On l'affiche TOUJOURS ---
-  if (image) {
-      image.src = content.image;
-      image.alt = content.title;
-      image.style.display = 'block'; // On force l'affichage
-      // Astuce : si l'image est trop collée à la vidéo, ajoutez du margin dans le CSS
-  }
-
-  // --- PARTIE VIDÉO : On l'affiche SI elle existe ---
-  if (content.video && video) {
-    video.style.display = 'block';
-    video.src = content.video;
-    
-    playBtn.textContent = "Lecture Vidéo ▶";
-
-    playBtn.addEventListener('click', (e) => {
-      e.preventDefault(); 
-      if (video.paused) {
-        video.play();
-        playBtn.textContent = "Pause ⏸"; 
-      } else {
-        video.pause();
-        playBtn.textContent = "Lecture Vidéo ▶";
-      }
-    });
-
-  } else {
-    // S'il n'y a PAS de vidéo
-    if (video) {
-      video.style.display = 'none';
-      video.pause();
-      video.src = "";
-    }
-    playBtn.textContent = "Jouer";
-  }
-
-  if (modal.parentElement) {
-    modal.parentElement.classList.add('active');
-  }
-}
->>>>>>> main
 
 function generateProfile() {
     let counts = { A: 0, B: 0, C: 0, D: 0 };
@@ -234,9 +169,8 @@ function generateProfile() {
         counts[response]++;
     });
 
-    let dominantProfile = 'B'; // Profil par défaut ou en cas d'égalité
+    let dominantProfile = 'B'; 
     
-    // Déterminer la réponse majoritaire (simplifié pour l'exemple)
     if (counts.D > counts.C && counts.D > counts.B && counts.D > counts.A) {
         dominantProfile = 'D';
     } else if (counts.C > counts.D && counts.C > counts.B && counts.C > counts.A) {
@@ -245,7 +179,6 @@ function generateProfile() {
         dominantProfile = 'A';
     }
 
-    // Définir le contenu du profil final
     const profileContent = {
         A: { title: "Profil A : Découverte & Loisir", description: "Vous visez le bien-être et la régularité. Ce niveau Decathlon se concentre sur les bases de la programmation pour la santé et le bien-être.", link: '/games/decathlon/index.html?profile=A' },
         B: { title: "Profil B : Intermédiaire & Forme", description: "Vous êtes régulier et cherchez à améliorer votre endurance. Ce niveau Decathlon vous met au défi d'optimiser des routines sportives via des algorithmes.", link: '/games/decathlon/index.html?profile=B' },
@@ -256,26 +189,22 @@ function generateProfile() {
     return profileContent[dominantProfile];
 }
 
-// Fonction pour passer à la question suivante
 function nextQuestion(answer) {
     const currentQ = qcmData[currentQuestionIndex];
-    decathlonResponses[currentQ.id] = answer; // Stocker la réponse
+    decathlonResponses[currentQ.id] = answer; 
     
-    currentQuestionIndex++; // Passer à la question suivante
+    currentQuestionIndex++; 
     
-    // Ré-afficher la modale, ce qui déclenchera la question suivante ou le profil final
+    // Ré-afficher la modale pour la suite
     const decathlonContent = levelData.find(item => item.id === 'decathlon');
     if (decathlonContent) {
         renderModal(decathlonContent);
     }
 }
 
-// Attacher les écouteurs d'événements pour les boutons de réponse du QCM
 function attachQCMListeners() {
     document.querySelectorAll('.qcm-option').forEach(button => {
-        // Détacher d'abord pour éviter les doubles écouteurs
         button.onclick = null; 
-        
         button.onclick = () => {
             const answer = button.dataset.answer;
             nextQuestion(answer);
@@ -291,33 +220,76 @@ function closeModal() {
   const modal = document.querySelector('#levelModal');
   if (modal && modal.parentElement) {
     modal.parentElement.classList.remove('active');
+    
+    // Arrêter la vidéo si elle joue
+    const video = modal.querySelector('video');
+    if(video) {
+        video.pause();
+        video.src = ""; // Reset pour éviter qu'elle continue en fond
+    }
   }
 }
 
-// Fonction utilitaire pour le rendu par défaut des autres niveaux
+// Fonction pour les niveaux standards (avec support VIDÉO ajouté)
 function renderDefaultModal(content) {
     const modal = document.querySelector('#levelModal');
     const body = modal.querySelector('.body');
     const heading = modal.querySelector('h3');
     const image = modal.querySelector('img');
+    const video = modal.querySelector('video');
     const actions = modal.querySelector('.actions');
 
     heading.textContent = content.title;
     body.textContent = content.description;
-    image.src = content.image;
-    image.alt = content.title;
     
-    // Réinitialiser les boutons d'action au format par défaut
+    // Image
+    if (image) {
+        image.src = content.image;
+        image.alt = content.title;
+        image.style.display = 'block';
+    }
+
+    // Gestion des boutons & Vidéo
+    let playButtonHtml = `<a class="btn play-btn" href="${content.link}">${content.cta || 'Play'}</a>`;
+    
+    // Logique Vidéo : Si le contenu a une vidéo, on configure le player
+    if (content.video && video) {
+        video.style.display = 'block';
+        video.src = content.video;
+        // Bouton spécial pour contrôler la vidéo
+        playButtonHtml = `<button class="btn play-btn video-toggle">Lecture Vidéo ▶</button>`;
+    } else if (video) {
+        // Pas de vidéo pour ce niveau
+        video.style.display = 'none';
+        video.pause();
+    }
+
     actions.innerHTML = `
-        <a class="btn play-btn" href="${content.link}">${content.cta || 'Play'}</a>
-        <button class="btn secondary close-btn" onclick="closeModal()">Maybe later</button>
+        ${playButtonHtml}
+        
     `;
+
+    // Si c'est une vidéo, on attache l'événement JS au bouton qu'on vient de créer
+    if (content.video && video) {
+        const videoBtn = actions.querySelector('.video-toggle');
+        videoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (video.paused) {
+                video.play();
+                videoBtn.textContent = "Pause ⏸";
+            } else {
+                video.pause();
+                videoBtn.textContent = "Lecture Vidéo ▶";
+            }
+        });
+    }
 
     if (modal.parentElement) {
         modal.parentElement.classList.add('active');
     }
 }
 
+// Fonction Principale de rendu (Router)
 function renderModal(content) {
     const modal = document.querySelector('#levelModal');
     if (!modal) return console.warn('Modal element (#levelModal) not found.');
@@ -326,38 +298,38 @@ function renderModal(content) {
     const heading = modal.querySelector('h3');
     const image = modal.querySelector('img');
     const actions = modal.querySelector('.actions');
+    const video = modal.querySelector('video');
 
-    // Rendre la modale normale pour tous les niveaux SAUF Decathlon
+    // ROUTER : Si ce n'est pas Decathlon, utiliser l'affichage standard (Vidéo ou Image simple)
     if (content.id !== 'decathlon') {
         renderDefaultModal(content);
         return;
     }
 
-    // --- LOGIQUE SPÉCIFIQUE AU QCM DECATHLON ---
+    // --- LOGIQUE SPÉCIFIQUE DECATHLON (QCM) ---
+    // On cache la vidéo pour le QCM
+    if(video) video.style.display = 'none';
 
-    // Si le QCM est terminé, afficher le profil final
+    // Si le QCM est terminé
     if (currentQuestionIndex >= qcmData.length) {
         const finalProfile = generateProfile();
         heading.textContent = `Mission Briefing: ${finalProfile.title}`;
-        // Utiliser innerHTML pour permettre les balises HTML si besoin
         body.innerHTML = `<p>${finalProfile.description}</p>`; 
         image.src = content.image; 
         image.alt = finalProfile.title;
         
-        // Afficher le bouton "Play" avec le lien du profil
         actions.innerHTML = `
             <a class="btn play-btn" href="${finalProfile.link}">Start the mission</a>
             <button class="btn secondary close-btn" onclick="closeModal()">Maybe later</button>
         `;
 
     } else {
-        // Afficher la question actuelle
+        // Afficher la question
         const currentQ = qcmData[currentQuestionIndex];
         heading.textContent = `QCM Decathlon (${currentQ.id}/${qcmData.length})`;
         
         let questionHTML = `<h4>${currentQ.question}</h4><ul style="list-style: none; padding: 0;">`;
         for (const [key, value] of Object.entries(currentQ.options)) {
-            // Utilisation d'un style en ligne pour le bouton pour coller au style global
             questionHTML += `<li style="margin-bottom: 8px;"><button class="qcm-option btn secondary" data-answer="${key}" style="text-align: left; width: 100%;">${key}. ${value}</button></li>`;
         }
         questionHTML += '</ul>';
@@ -365,22 +337,19 @@ function renderModal(content) {
         body.innerHTML = questionHTML;
         image.src = content.image; 
 
-        // Afficher uniquement le bouton d'annulation pendant le QCM
         actions.innerHTML = `<button class="btn secondary close-btn" onclick="closeModal()">Annuler le QCM</button>`;
     }
 
-    // Afficher la modale (backdrop.classList.add('active'))
     if (modal.parentElement) {
         modal.parentElement.classList.add('active');
     }
     
-    // Attacher les écouteurs d'événements pour les boutons de réponse QCM
     if (currentQuestionIndex < qcmData.length) {
         attachQCMListeners();
     }
     
-    // S'assurer que les boutons de fermeture fonctionnent toujours
-    document.querySelectorAll('.close-btn').forEach((btn) => btn.addEventListener('click', closeModal));
+    // Réattacher la fermeture
+    document.querySelectorAll('.close-btn').forEach((btn) => btn.onclick = closeModal);
 }
 
 function bindNodes() {
@@ -389,7 +358,7 @@ function bindNodes() {
             const levelId = node.dataset.levelId;
             const content = levelData.find((item) => item.id === levelId);
 
-            // Réinitialiser le QCM si l'on clique sur Decathlon pour commencer
+            // Réinitialiser le QCM si c'est Decathlon
             if (levelId === 'decathlon') {
                 decathlonResponses = {};
                 currentQuestionIndex = 0;
@@ -413,7 +382,7 @@ function initDragToPan() {
   let scrollTop = 0;
 
   stageWrapper.addEventListener('mousedown', (event) => {
-    if (event.button !== 0) return; // left click only
+    if (event.button !== 0) return; 
     isDragging = true;
     stageWrapper.classList.add('is-dragging');
     startX = event.pageX - stageWrapper.offsetLeft;
@@ -437,7 +406,7 @@ function initDragToPan() {
     stageWrapper.scrollLeft = scrollLeft - (x - startX);
     stageWrapper.scrollTop = scrollTop - (y - startY);
   });
-
+  
   // Touch support
   let touchStart = null;
   stageWrapper.addEventListener('touchstart', (e) => {
@@ -462,67 +431,55 @@ document.addEventListener('DOMContentLoaded', () => {
   bindNodes();
   initDragToPan();
 
-  // Gestion du clic sur le backdrop pour fermer la modale
-  const backdrop = document.querySelector('#levelModal').parentElement;
+  const backdrop = document.querySelector('#levelModal')?.parentElement;
   if (backdrop) {
     backdrop.addEventListener('click', (event) => {
-      // Ne fermer que si l'on clique directement sur le fond (pas sur la modale elle-même)
       if (event.target === backdrop) {
         closeModal();
       }
     });
   }
 
-  // Écouteurs pour tous les boutons de fermeture
   document.querySelectorAll('.close-btn').forEach((btn) =>
     btn.addEventListener('click', closeModal)
   );
 });
 
+// Fonctions Cookies et Score
 function setCookie(name, value, days) {
   let expires = "";
   if (days) {
     const date = new Date();
-    // Calcule la date d'expiration
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     expires = "; expires=" + date.toUTCString();
   }
-  // Crée la chaîne de cookie. Le "path=/" rend le cookie accessible sur tout le site.
   document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Lax";
 }
 
 function getCookie(name) {
   const nameEQ = name + "=";
-  // Découpe la chaîne document.cookie en un tableau de cookies.
   const ca = document.cookie.split(';');
-
   for(let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    // Supprime les espaces blancs au début
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1, c.length);
-    }
-    // Si on trouve le nom du cookie au début de la chaîne...
-    if (c.indexOf(nameEQ) === 0) {
-      // ... retourne la valeur (tout ce qui suit le '=').
-      return c.substring(nameEQ.length, c.length);
-    }
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
   }
-  return null; // Retourne null si le cookie n'est pas trouvé
+  return null;
 }
 
+// Gestion barre de progression
 const element = document.getElementById('gameWindow');
 const progressbar = document.getElementById("progress");
-// 2. Définir la fonction de vérification (entrée)
-function handleMouseOver() {
-  progressbar.style.width = (25 * getCookie('score'))+'%';
-}
 
-// 3. Définir la fonction de vérification (sortie)
-function handleMouseOut() {
-  progressbar.style.width = (25 * getCookie('score'))+'%';
+if(element && progressbar) {
+    function handleMouseOver() {
+      const score = getCookie('score') || 0; 
+      progressbar.style.width = (25 * score)+'%';
+    }
+    function handleMouseOut() {
+      const score = getCookie('score') || 0;
+      progressbar.style.width = (25 * score)+'%';
+    }
+    element.addEventListener('mouseover', handleMouseOver);
+    element.addEventListener('mouseout', handleMouseOut);
 }
-
-// 4. Attacher les écouteurs d'événements
-element.addEventListener('mouseover', handleMouseOver);
-element.addEventListener('mouseout', handleMouseOut);
