@@ -71,10 +71,10 @@ This hub was built to prepare for and take on the Nuit de l'Info challenges.
 | :--- | :--- |
 | **Developer** | Ehrhardt Victor |
 | **Developer** | Roullin Léon |
-| **Designer/Developer** | Grollemund Flavie |
+| **Designer** | Grollemund Flavie |
 | **Developer** | Muller Antoine |
-| **Developer** | Scheliquet Antonin |
-| **Designer/Integrator** | Bauer Chloé |
+| **Developer/Designer** | Scheliquet Antonin |
+| **Designer** | Bauer Chloé |
 | **Developer** | Zurbach Daniel |
 | **Developer** | Althaus Tom |
 
