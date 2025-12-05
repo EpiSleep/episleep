@@ -10,7 +10,7 @@ const levelData = [
     description: '',
     cta: 'Discover the challenge',
     image: 'assets/images/femme.png',
-    video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
+    video: 'assets/video/video_femme.mp4', 
     link: 'games/femmes-info/index.html'
   },
   {

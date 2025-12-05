@@ -8,19 +8,38 @@
   <link rel="stylesheet" href="assets/css/level-select.css" />
   <style>
 
-    #levelModal {
+
+#levelModal {
       max-height: 90vh;  
       overflow-y: auto;  
-      
-     
       scrollbar-width: thin; 
+      max-width: 1000px !important; /* Exemple: Passez de 600px à 900px */
+      width: 90vw;
+    }
+    
+    /* 🚀 NOUVEAU STYLE : Conteneur Flexbox pour aligner les médias */
+    .media-group {
+        display: flex; /* Active Flexbox */
+        gap: 15px;     /* Espace entre les deux éléments */
+        margin-bottom: 15px;
+        align-items: flex-start; /* Aligne les éléments en haut */
     }
 
-   
+    /* 🎨 NOUVEAU STYLE : L'image et la vidéo prennent chacune la moitié */
+    .media-group img,
+    .media-group video {
+        flex: 1 1 90%; /* Chaque élément prend 50% de l'espace disponible */
+        width: 100%;   /* S'assure que le contenu remplit l'espace flex */
+        max-width: 50%; /* Limite la largeur au cas où */
+        height: auto !important; /* Pour l'image, pour s'adapter */
+    }
+
+    /* 🖼️ AJUSTEMENT sur l'image seule (l'image de l'exemple est verticale, elle sera centrée si la vidéo est plus courte) */
     #levelModal img {
-      max-height: 250px; 
-      object-fit: cover; 
-      width: 100%;       
+      max-height: 400px; /* Hauteur maximale ajustée pour la nouvelle mise en page */
+      object-fit: contain; /* S'assure que l'image entière est visible */
+      width: 100%;
+             /* Conservé pour s'assurer qu'elle utilise la largeur disponible */
     }
 </style>
 </head>
@@ -87,6 +106,12 @@
     <button class="close-btn" aria-label="Close modal">✕</button>
   </header>
 
+  <div class="media-group"> 
+  <img 
+    src="assets/images/femme.png" 
+    alt="Image du niveau" 
+    style="display: block; margin-bottom: 15px; width: 100%; height: auto; border-radius: 8px;" 
+  />
   <video 
     class="media-preview" 
     controls 
@@ -94,12 +119,16 @@
   >
     Votre navigateur ne supporte pas la vidéo.
   </video>
+<<<<<<< HEAD
 
   <img 
     src="assets/images/femme.png" 
     alt="Image du niveau" 
     style="display: block; margin-bottom: 15px; width: 50%; height: auto; border-radius: 8px;" 
   />
+=======
+</div>
+>>>>>>> 97d413f (fixe de la video et de l'image)
 
   <div class="body">Review the mission details and press Play when you are ready.</div>
   <div class="actions">
