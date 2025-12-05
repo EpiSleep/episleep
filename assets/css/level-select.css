@@ -1,24 +1,21 @@
 /* page tweaks migrated from level-select.html */
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-/* header cross aligned to the far right */
-.page-shell .game-header {
-  position: relative;
-}
-.game-header .actions {
-  position: absolute;
-  right: 24px;
-  top: 24px;
-}
-.game-header .actions .icon-btn {
-  font-size: 1.5rem;
-  padding: 0.25rem 0.5rem;
-  line-height: 1;
+.page-shell {
+  padding: 16px;
 }
 
-/* modal backdrop and modal size/opacity adjustments */
+.level-stage {
+  padding: 16px;
+}
+
+.card {
+  padding: 16px;
+}
+
 .modal-backdrop {
   background: rgba(5, 5, 15, 0.9);
 }
@@ -28,7 +25,6 @@ body {
   background: rgba(20, 20, 40, 0.95);
 }
 
-/* drag-to-pan styling + hide horizontal scrollbar */
 .stage-wrapper {
   cursor: grab;
   overflow: auto;
