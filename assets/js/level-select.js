@@ -487,6 +487,7 @@ if(element && progressbar) {
       const decat = document.getElementById('decat');
       const cve = document.getElementById('cve');
       const ergo = document.getElementById('ergo');
+      const linux = document.getElementById('linux');
       if (getCookie('woman') == "1"){
         woman.src = "assets/images/medals/femme.png";
       }
@@ -498,6 +499,9 @@ if(element && progressbar) {
       }
       if (getCookie('ergo') == "1"){
         ergo.src = "assets/images/medals/brain.png";
+      }
+      if (getCookie('linux') == "1"){
+        ergo.src = "assets/images/medals/linux.png";
       }
     }
     function handleMouseOut() {
