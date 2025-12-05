@@ -27,15 +27,15 @@
           <div class="track-grid"></div>
           <div class="stage-node" data-level-id="femmes-info" style="top: 34%; left: 8%;">
             <div class="node-label">Women &amp; IT</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--cyan"></button>
           </div>
           <div class="stage-node" data-level-id="decathlon" style="top: 70%; left: 30%;">
             <div class="node-label">Decathlon</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--green"></button>
           </div>
           <div class="stage-node" data-level-id="cve-explorer" style="top: 26%; left: 56%;">
             <div class="node-label">CVE Explorer</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--orange"></button>
           </div>
           <div class="stage-node" data-level-id="linux-install" style="top: 50%; left: 44%;">
             <div class="node-label">Linux Install</div>
@@ -43,7 +43,7 @@
           </div>
           <div class="stage-node" data-level-id="ergonomie" style="top: 72%; left: 82%;">
             <div class="node-label">Ergonomics</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--red"></button>
           </div>
         </div>
       </div>
@@ -51,23 +51,35 @@
     </section>
   </div>
 
-  <div class="modal-backdrop">
-    <div class="modal" id="levelModal">
-      <header>
-        <h3>Mission Briefing</h3>
-        <button class="close-btn" aria-label="Close modal" >✕</button>
-      </header>
-      <img src="assets/img/placeholder.png" alt="Image du niveau" loading="lazy" />
-      <video class="media-preview" controls style="display: none; width: 100%; border-radius: 8px; margin-bottom: 15px;">
-      Votre navigateur ne supporte pas la vidéo.
-      </video>
-      <div class="body">Review the mission details and press Play when you are ready.</div>
-      <div class="actions">
-        <a class="btn play-btn" href="#">Play</a>
-        
-      </div>
-    </div>
+<div class="modal-backdrop">
+<div class="modal" id="levelModal">
+  <header>
+    <h3>Mission Briefing</h3>
+    <button class="close-btn" aria-label="Close modal">✕</button>
+  </header>
+
+  <video 
+    class="media-preview" 
+    controls 
+    style="display: none; width: 100%; border-radius: 8px; margin-bottom: 15px;"
+  >
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
+
+  <img 
+    src="assets/images/femme.png" 
+    alt="Image du niveau" 
+    style="display: block; margin-bottom: 15px; width: 100%; height: auto; border-radius: 8px;" 
+  />
+
+  <div class="body">Review the mission details and press Play when you are ready.</div>
+  <div class="actions">
+    <a class="btn play-btn" href="#">Play</a>
   </div>
+</div>
+  <script src="assets/js/level-select.js"></script>
+</body>
+</html>
   <script src="assets/js/level-select.js"></script>
 </body>
 </html>
