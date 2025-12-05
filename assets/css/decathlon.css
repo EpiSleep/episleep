@@ -1,5 +1,175 @@
-.sport {
-background-image: url('../images/decathlon_sport.webp');
-height: 900px;
-width: 900px;
+
+    /* -------------------------------------- */
+    /* CENTRAGE DE L'ABEILLE (IMAGE) */
+    /* -------------------------------------- */
+    .sport {
+      background-image: url('../images/decathlon_sport.webp');
+      height: 560px;
+      width: 900px;
+      
+      /* Flexbox pour centrer le contenu (bouton + image + prompt) */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Aligne les enfants verticalement */
+      
+      /* Nécessaire pour positionner le prompt de touche en absolu */
+      position: relative; 
+    }
+
+    /* -------------------------------------- */
+    /* AFFICHAGE DE LA TOUCHE DEMANDÉE */
+    /* -------------------------------------- */
+#key-prompt {
+  /* Retirer le positionnement absolu pour laisser Flexbox gérer la position */
+  /* position: absolute; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%) translateY(-150px); */ 
+  
+  /* Nous ajustons simplement la marge supérieure pour le placer plus bas */
+  margin-top: 50px; /* Ajout d'une marge pour l'éloigner un peu de l'abeille */
+
+  font-size: 4em; 
+  color: #00ff00; 
+  text-shadow: 0 0 10px #00ff00, 0 0 20px rgba(0, 255, 0, 0.5);
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  z-index: 100; 
+  min-width: 100px; 
+  text-align: center;
+  transition: color 0.1s;
+}
+    /* -------------------------------------- */
+    /* STYLES GÉNÉRAUX DE LA PAGE */
+    /* -------------------------------------- */
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+    }
+
+    #exercise-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+
+    }
+
+    /* -------------------------------------- */
+    /* STYLES GÉNÉRAUX DE LA PAGE */
+    /* -------------------------------------- */
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+    }
+
+    /* -------------------------------------- */
+    /* CENTRAGE DE L'ABEILLE ET CONTENEUR DE JEU */
+    /* -------------------------------------- */
+    .sport {
+      background-image: url('../images/backgroundDecathlon.webp');
+      height: px;
+      width: 900px;
+      
+      /* Flexbox pour centrer le contenu */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      
+      position: relative;
+    }
+
+    #exercise-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    /* -------------------------------------- */
+    /* NOUVELLE STRUCTURE DE JEU DE RYTHME */
+    /* -------------------------------------- */
+
+    #rhythm-game-area {
+        /* La zone visible pour le défilement */
+        width: 600px; 
+        height: 100px;
+        margin-top: 50px;
+        overflow: hidden; 
+        position: relative;
+        border-top: 2px solid rgba(0, 255, 0, 0.5);
+        border-bottom: 2px solid rgba(0, 255, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    #key-sequence {
+        /* Conteneur pour les notes */
+        position: relative; 
+        width: 100%; 
+        height: 100%;
+    }
+
+    #hit-target {
+        /* La ligne de "pause" où frapper */
+        position: absolute;
+        left: 100px; /* Position fixe */
+        top: 0;
+        width: 5px; 
+        height: 100%;
+        background-color: #FFFF00;
+        box-shadow: 0 0 15px #FFFF00;
+        z-index: 10;
+        transition: background-color 0.1s;
+    }
+
+    .key-note {
+        /* Style d'une seule touche */
+        position: absolute; 
+        right: -100px; /* Commence hors écran à droite */
+        top: 10px;
+        width: 80px; 
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #FFFFFF;
+        background-color: rgba(0, 255, 0, 0.3);
+        border-radius: 5px;
+        transition: background-color 0.1s, box-shadow 0.1s;
+    }
+
+    /* Définition de l'animation de défilement (2 secondes pour traverser) */
+    @keyframes scroll-key {
+        to {
+            transform: translateX(-700px); 
+        }
+    }
+    
+    /* Le message "Prêt ?" / "PERDU" est affiché directement dans le conteneur #rhythm-game-area */
+    #rhythm-message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3em;
+        color: #fff;
+        z-index: 20;
+    }
+  .sticky-footer {
+    /* Assurez-vous qu'il est positionné pour que le z-index fonctionne */
+    position: relative; 
+    
+    /* Place le bouton au-dessus de tout, y compris les éléments de jeu */
+    z-index: 1000; 
 }
