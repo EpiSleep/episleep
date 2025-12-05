@@ -5,6 +5,8 @@ const levelData = [
     description: 'A narrative adventure highlighting the heroines of computing. Videos, quizzes, and interactive archives await.',
     cta: 'Discover the challenge',
     image: 'https://dummyimage.com/900x400/2b3a67/ffffff&text=Women+%26+IT',
+    // EXEMPLE: Ajoutez votre chemin vidéo ici. Si vide, l'image s'affiche.
+    video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
     link: '/games/femmes-info/index.html'
   },
   {
@@ -42,30 +44,35 @@ function renderModal(content) {
   const body = modal.querySelector('.body');
   const heading = modal.querySelector('h3');
   const image = modal.querySelector('img');
+  // MODIFICATION: Sélection de la vidéo
+  const video = modal.querySelector('video');
   const playBtn = modal.querySelector('.play-btn');
 
-  if (!heading) {
-    console.warn('Heading element (h3) not found in modal.');
-    return;
-  }
-  if (!body) {
-    console.warn('Body element (.body) not found in modal.');
-    return;
-  }
-  if (!image) {
-    console.warn('Image element (img) not found in modal.');
-    return;
-  }
-  if (!playBtn) {
-    console.warn('Play button element (.play-btn) not found in modal.');
+  if (!heading || !body || !image || !playBtn) {
+    console.warn('Elements missing in modal.');
     return;
   }
 
   heading.textContent = content.title;
   body.textContent = content.description;
-  image.src = content.image;
-  image.alt = content.title;
   playBtn.href = content.link;
+
+  // MODIFICATION: Logique Vidéo vs Image
+  if (content.video && video) {
+    image.style.display = 'none';
+    video.style.display = 'block';
+    video.src = content.video;
+    // video.play(); // Décommentez pour lecture auto
+  } else {
+    if (video) {
+      video.style.display = 'none';
+      video.pause();
+      video.src = "";
+    }
+    image.style.display = 'block';
+    image.src = content.image;
+    image.alt = content.title;
+  }
 
   if (modal.parentElement) {
     modal.parentElement.classList.add('active');
@@ -87,7 +94,18 @@ function bindNodes() {
 }
 
 function closeModal() {
-  const backdrop = document.querySelector('#levelModal').parentElement;
+  const modal = document.querySelector('#levelModal');
+  if (!modal) return;
+  
+  const backdrop = modal.parentElement;
+  
+  // MODIFICATION: Arrêter la vidéo à la fermeture
+  const video = modal.querySelector('video');
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+
   backdrop.classList.remove('active');
 }
 
@@ -148,11 +166,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initDragToPan();
 
   const backdrop = document.querySelector('#levelModal').parentElement;
-  backdrop.addEventListener('click', (event) => {
-    if (event.target === backdrop) {
-      closeModal();
-    }
-  });
+  if (backdrop) {
+    backdrop.addEventListener('click', (event) => {
+      if (event.target === backdrop) {
+        closeModal();
+      }
+    });
+  }
 
   document.querySelectorAll('.close-btn').forEach((btn) =>
     btn.addEventListener('click', closeModal)

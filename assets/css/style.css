@@ -519,3 +519,49 @@ a {
   .stage-wrapper { padding: 12px; }
   .level-stage { padding: 12px; }
 }
+/* --- Zone des boutons (Conteneur) pour #levelModal --- */
+/* --- Zone des boutons (Conteneur) pour #levelModal --- */
+#levelModal .actions {
+    display: flex;             /* Active le mode flexible */
+    justify-content: center;   /* Centre les boutons horizontalement */
+    align-items: center;       /* Aligne les boutons verticalement */
+    gap: 20px;                 /* Espace de 20px entre les deux boutons */
+    margin-top: 30px;          /* Espace au-dessus des boutons */
+    width: 100%;
+}
+
+/* --- Style de base pour TOUS les boutons de CETTE modale --- */
+#levelModal .btn {
+    display: inline-flex;      /* Garde le texte bien centré */
+    justify-content: center;
+    align-items: center;
+    height: 45px;              /* Hauteur fixe pour qu'ils soient pareils */
+    padding: 0 150px;           /* Largeur (padding interne) */
+    
+    /* Correction du texte géant */
+    font-size: 16px !important; /* Force une taille de texte normale */
+    font-family: sans-serif;
+    font-weight: 600;
+    line-height: 1;            /* Évite les décalages de hauteur */
+    white-space: nowrap;       /* Interdit au texte de passer à la ligne */
+    
+    border-radius: 50px;       /* Forme de pilule arrondie */
+    text-decoration: none;     /* Pas de soulignement */
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* --- Bouton PLAY (Violet / Principal) --- */
+#levelModal .play-btn {
+    background: linear-gradient(135deg, #7b2cbf, #9d4edd); /* Joli dégradé violet */
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(123, 44, 191, 0.4); /* Petite lueur violette */
+}
+
+#levelModal .play-btn:hover {
+    transform: translateY(-2px); /* Le bouton monte un peu au survol */
+    box-shadow: 0 6px 20px rgba(123, 44, 191, 0.6);
+    color: white; /* Sécurité pour garder le texte blanc */
+}
+
