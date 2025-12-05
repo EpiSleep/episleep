@@ -487,6 +487,7 @@ if(element && progressbar) {
       const decat = document.getElementById('decat');
       const cve = document.getElementById('cve');
       const ergo = document.getElementById('ergo');
+      console.log(getCookie('woman'));
       if (getCookie('woman') == "1"){
         woman.src = "assets/images/medals/femme.png";
       }
