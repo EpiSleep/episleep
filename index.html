@@ -47,32 +47,33 @@
     </main>
   </div>
 
-  <div class="modal-backdrop" id="settingsModal">
-    <div class="modal">
+<div class="modal-backdrop">
+    <div class="modal" id="levelModal">
       <header>
-        <h3>Paramètres rapides</h3>
-        <button class="close-btn" aria-label="Fermer">✕</button>
+        <h3>Mission Briefing</h3>
+        <button class="close-btn" aria-label="Close modal" >✕</button>
       </header>
-      <div class="body">
-        <p>Placeholders pour tes réglages : audio, shaders, accessibilité, sauvegardes.</p>
-        <div class="form-grid">
-          <div class="form-control">
-            <label for="audio">Volume master</label>
-            <input id="audio" type="range" min="0" max="100" value="80" />
-          </div>
-          <div class="form-control">
-            <label for="retro">Vibes rétro</label>
-            <select id="retro">
-              <option>CRT + scanlines</option>
-              <option>Pixel sharp</option>
-              <option>Mode clair (bientôt)</option>
-            </select>
-          </div>
+      
+      <div id="modal-content-area">
+        
+        <div id="media-content">
+          <img src="assets/img/placeholder.png" alt="Image du niveau" loading="lazy" />
+          <video class="media-preview" controls style="display: none; width: 100%; border-radius: 8px; margin-bottom: 15px;">
+          Votre navigateur ne supporte pas la vidéo.
+          </video>
         </div>
+
+        <div id="qcm-game-content" style="display: none;">
+          </div>
+
+      </div>
+      
+      <div class="body">Review the mission details and press Play when you are ready.</div>
+      <div class="actions">
+        <a class="btn play-btn" href="#">Play</a>
       </div>
     </div>
   </div>
-
   <div class="modal-backdrop" id="creditsModal">
     <div class="modal">
       <header>
