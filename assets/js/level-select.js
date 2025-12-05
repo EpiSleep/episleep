@@ -503,6 +503,22 @@ if(element && progressbar) {
     function handleMouseOut() {
       const score = getCookie('score') || 0;
       progressbar.style.width = (25 * score)+'%';
+      const woman = document.getElementById('women');
+      const decat = document.getElementById('decat');
+      const cve = document.getElementById('cve');
+      const ergo = document.getElementById('ergo');
+      if (getCookie('woman') == "1"){
+        woman.src = "assets/images/medals/femme.png";
+      }
+      if (getCookie('decat') == "1"){
+        decat.src = "assets/images/medals/decathlon.png";
+      }
+      if (getCookie('cve') == "1"){
+        cve.src = "assets/images/medals/peche.png";
+      }
+      if (getCookie('ergo') == "1"){
+        ergo.src = "assets/images/medals/brain.png";
+      }
     }
     element.addEventListener('mouseover', handleMouseOver);
     element.addEventListener('mouseout', handleMouseOut);
