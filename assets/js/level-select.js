@@ -195,13 +195,11 @@ const element = document.getElementById('gameWindow');
 const progressbar = document.getElementById("progress");
 // 2. Définir la fonction de vérification (entrée)
 function handleMouseOver() {
-  console.log(getCookie('score'))
   progressbar.style.width = (25 * getCookie('score'))+'%';
 }
 
 // 3. Définir la fonction de vérification (sortie)
 function handleMouseOut() {
-  console.log(getCookie('score'))
   progressbar.style.width = (25 * getCookie('score'))+'%';
 }
 

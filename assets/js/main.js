@@ -34,7 +34,7 @@ function getCookie(name) {
 }
 
 function launchGame(){
-  setCookie('score', 1, 2);
+  setCookie('score', 0, 2);
   console.log(getCookie('score'))
   window.location.replace("level-select.html");
 }
