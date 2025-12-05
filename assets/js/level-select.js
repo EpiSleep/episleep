@@ -180,12 +180,12 @@ function generateProfile() {
     }
 
     const profileContent = {
-        A: { title: "Profil A : Découverte & Loisir", description: "Vous visez le bien-être et la régularité. Ce niveau Decathlon se concentre sur les bases de la programmation pour la santé et le bien-être.", link: '/games/decathlon/index.html?profile=A' },
-        B: { title: "Profil B : Intermédiaire & Forme", description: "Vous êtes régulier et cherchez à améliorer votre endurance. Ce niveau Decathlon vous met au défi d'optimiser des routines sportives via des algorithmes.", link: '/games/decathlon/index.html?profile=B' },
-        C: { title: "Profil C : Avancé & Performance", description: "Votre objectif est la force et la performance spécifique. Ce niveau Decathlon nécessite une analyse approfondie des données de performance et de gain de force.", link: '/games/decathlon/index.html?profile=C' },
-        D: { title: "Profil D : Athlète & Compétition", description: "Votre engagement est total. Ce niveau Decathlon vous confronte à des défis de micro-optimisation et de gestion de gros jeux de données sportifs.", link: '/games/decathlon/index.html?profile=D' }
+        A: { title: "Profil A : Découverte & Loisir", description: "Vous visez le bien-être et la régularité. Ce niveau Decathlon se concentre sur les bases de la programmation pour la santé et le bien-être.", link: 'games/decathlon/index.html?profile=A' },
+        B: { title: "Profil B : Intermédiaire & Forme", description: "Vous êtes régulier et cherchez à améliorer votre endurance. Ce niveau Decathlon vous met au défi d'optimiser des routines sportives via des algorithmes.", link: 'games/decathlon/index.html?profile=B' },
+        C: { title: "Profil C : Avancé & Performance", description: "Votre objectif est la force et la performance spécifique. Ce niveau Decathlon nécessite une analyse approfondie des données de performance et de gain de force.", link: 'games/decathlon/index.html?profile=C' },
+        D: { title: "Profil D : Athlète & Compétition", description: "Votre engagement est total. Ce niveau Decathlon vous confronte à des défis de micro-optimisation et de gestion de gros jeux de données sportifs.", link: 'games/decathlon/index.html?profile=D' }
     };
-
+    
     return profileContent[dominantProfile];
 }
 
