@@ -1,22 +1,6 @@
 // Music Handler Utility
 // Shared music functionality for all games
-
-// Cookie utility function
-function getCookie(name) {
-  const nameEQ = name + "=";
-  const ca = document.cookie.split(';');
-
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') {
-      c = c.substring(1, c.length);
-    }
-    if (c.indexOf(nameEQ) === 0) {
-      return c.substring(nameEQ.length, c.length);
-    }
-  }
-  return null;
-}
+// Requires: cookie-manager.js to be loaded before this script
 
 /**
  * Initialize background music with volume from cookie
@@ -31,11 +15,8 @@ function initGameMusic(musicFileName, audioElementId = 'background-music') {
     return null;
   }
 
-  // Get volume from cookie (stored as 0..100)
-  const cookieVal = getCookie('audioVolume');
-  let volumePercent = cookieVal !== null ? Number(cookieVal) : 80;
-  if (isNaN(volumePercent)) volumePercent = 80;
-  volumePercent = Math.max(0, Math.min(100, volumePercent));
+  // Get volume from cookie (stored as 0..100) using cookie-manager.js
+  const volumePercent = getAudioVolume();
 
   // Convert to 0..1 range for audio element
   music.volume = volumePercent / 100;

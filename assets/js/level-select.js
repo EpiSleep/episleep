@@ -266,7 +266,7 @@ function renderSimpleInfoModal(title, bodyText) {
     // 1. Mise à jour du contenu
     heading.textContent = title;
     body.innerHTML = `<p>${bodyText}</p>`;
-    
+
     // 2. Masquage des éléments non pertinents
     if (image) image.style.display = 'none';
     if (video) {
@@ -274,15 +274,15 @@ function renderSimpleInfoModal(title, bodyText) {
         video.pause();
         video.src = "";
     }
-    
+
     // Supprimer le bouton "Play" (les actions)
-    actions.innerHTML = ``; 
+    actions.innerHTML = ``;
 
     // 3. Affichage de la modale
     if (modal.parentElement) {
         modal.parentElement.classList.add('active');
     }
-    
+
     // S'assurer que les boutons de fermeture fonctionnent (ils sont attachés dans DOMContentLoaded)
     document.querySelectorAll('.close-btn').forEach((btn) => btn.onclick = closeModal);
 }
@@ -337,7 +337,7 @@ function renderDefaultModal(content) {
         // Nettoyer l'écouteur précédent si nécessaire (bonne pratique)
         const oldVideoBtn = actions.querySelector('.video-toggle');
         if (oldVideoBtn) oldVideoBtn.replaceWith(oldVideoBtn.cloneNode(true));
-        
+
         const newVideoBtn = actions.querySelector('.video-toggle');
         newVideoBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -438,8 +438,8 @@ function bindNodes() {
     // Événement pour les ÉTOILES (NOUVEAU)
     document.querySelectorAll('.star').forEach((star) => {
         star.addEventListener('click', (event) => {
-            event.stopPropagation(); 
-            
+            event.stopPropagation();
+
             const starId = star.id;
             let title = "Étoile d'Information";
             let description = "Information générale sur la progression ou la carte.";
@@ -461,7 +461,7 @@ function bindNodes() {
                  title = "Resources and Participation";
                  description = "Resources offered: A \"NIRD approach\" Linux distribution, GitLab, a webpage for local authorities, and a detailed advocacy kit.Communication tools: Tchap channel, Mastodon account, and upcoming webinars.";
             }
-            
+
             renderSimpleInfoModal(title, description);
         });
     });
@@ -531,8 +531,14 @@ function initDragToPan() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log('🚀 Level Select page loaded');
+  console.log('📊 Game Status:', getAllGameStatus());
+
   bindNodes();
   initDragToPan();
+
+  // Initialize progress and badges on page load
+  updateProgressAndBadges();
 
   const backdrop = document.querySelector("#levelModal")?.parentElement;
   if (backdrop) {
@@ -549,81 +555,52 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function setCookie(name, value, days) {
-  let expires = "";
-  if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toUTCString();
+// ====================================================================
+// BADGE AND PROGRESS UPDATE FUNCTIONS (using cookie-manager.js)
+// ====================================================================
+
+/**
+ * Update progress bar and badge display based on current game status
+ */
+function updateProgressAndBadges() {
+  console.log('🔄 Updating progress bar and badges...');
+
+  const progressbar = document.getElementById("progress");
+  const score = getScore();
+
+  console.log(`📊 Current score: ${score}/5 (${score * 20}%)`);
+
+  if (progressbar) {
+    progressbar.style.width = (20 * score) + '%';
+    console.log(`✅ Progress bar updated to ${score * 20}%`);
+  } else {
+    console.warn('⚠️  Progress bar element not found');
   }
-  document.cookie =
-    name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
-}
 
-function getCookie(name) {
-  const nameEQ = name + "=";
-  const ca = document.cookie.split(";");
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-  }
-  return null;
-}
+  // Update badge images
+  const badgeMap = {
+    'women': { cookieKey: 'woman', unlockedSrc: 'assets/images/medals/femme.png' },
+    'decat': { cookieKey: 'decat', unlockedSrc: 'assets/images/medals/decathlon.png' },
+    'cve': { cookieKey: 'cve', unlockedSrc: 'assets/images/medals/peche.png' },
+    'ergo': { cookieKey: 'ergo', unlockedSrc: 'assets/images/medals/brain.png' },
+    'linux': { cookieKey: 'linux', unlockedSrc: 'assets/images/medals/linux.png' }
+  };
 
+  let unlockedCount = 0;
+  Object.entries(badgeMap).forEach(([elementId, config]) => {
+    const element = document.getElementById(elementId);
+    const isCompleted = isGameCompleted(config.cookieKey);
 
-const element = document.getElementById('gameWindow');
-const progressbar = document.getElementById("progress");
-
-if(element && progressbar) {
-    function handleMouseOver() {
-      const score = getCookie('score') || 0; 
-      progressbar.style.width = (20 * score)+'%';
-      const woman = document.getElementById('women');
-      const decat = document.getElementById('decat');
-      const cve = document.getElementById('cve');
-      const ergo = document.getElementById('ergo');
-      const linux = document.getElementById('linux');
-      if (getCookie('woman') === "1"){
-        woman.src = "assets/images/medals/femme.png";
-      }
-      if (getCookie('decat') === "1"){
-        decat.src = "assets/images/medals/decathlon.png";
-      }
-      if (getCookie('cve') === "1"){
-        cve.src = "assets/images/medals/peche.png";
-      }
-      if (getCookie('ergo') === "1"){
-        ergo.src = "assets/images/medals/brain.png";
-      }
-      if (getCookie('linux') === "1"){
-        linux.src = "assets/images/medals/linux.png";
-      }
+    if (element && isCompleted) {
+      element.src = config.unlockedSrc;
+      unlockedCount++;
+      console.log(`🏅 Badge '${elementId}' unlocked (${config.cookieKey})`);
+    } else if (element) {
+      console.log(`🔒 Badge '${elementId}' still locked`);
+    } else {
+      console.warn(`⚠️  Badge element '${elementId}' not found`);
     }
-    function handleMouseOut() {
-      const score = getCookie('score') || 0;
-      progressbar.style.width = (20 * score)+'%';
-      const woman = document.getElementById('women');
-      const decat = document.getElementById('decat');
-      const cve = document.getElementById('cve');
-      const ergo = document.getElementById('ergo');
-      const linux = document.getElementById('linux');
-      if (getCookie('woman') === "1"){
-        woman.src = "assets/images/medals/femme.png";
-      }
-      if (getCookie('decat') === "1"){
-        decat.src = "assets/images/medals/decathlon.png";
-      }
-      if (getCookie('cve') === "1"){
-        cve.src = "assets/images/medals/peche.png";
-      }
-      if (getCookie('ergo') === "1"){
-        ergo.src = "assets/images/medals/brain.png";
-      }
-      if (getCookie('linux') === "1"){
-        linux.src = "assets/images/medals/linux.png";
-      }
-    }
-    element.addEventListener('mouseover', handleMouseOver);
-    element.addEventListener('mouseout', handleMouseOut);
+  });
+
+  console.log(`✅ Update complete: ${unlockedCount}/5 badges unlocked`);
 }

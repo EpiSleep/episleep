@@ -8,12 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function launchGame(){
-  setCookie('score', 0, 2);
-  setCookie('woman', 0, 2);
-  setCookie('decat', 0, 2);
-  setCookie('cve', 0, 2);
-  setCookie('ergo', 0, 2);
-  setCookie('linux', 0, 2);
+  // Cookies are already initialized by cookie-manager.js
+  // Just navigate to level select
   window.location.replace("level-select.html");
 }
 
@@ -51,43 +47,19 @@ function setupModal(buttonId, modalId) {
   });
 }
 
-// --- GESTION DES COOKIES ET VOLUME (VOTRE CODE D'ORIGINE) ---
-function setCookie(name, value, days) {
-  let expires = "";
-  if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Lax";
-}
-
-function getCookie(name) {
-  const nameEQ = name + "=";
-  const ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-  }
-  return null;
-}
-
+// --- GESTION DU VOLUME (using cookie-manager.js) ---
 function initAudioSetting() {
   const slider = document.querySelector('#audio');
   if (!slider) return;
 
-  const cookieVal = getCookie('audioVolume');
-  let initial = cookieVal !== null ? Number(cookieVal) : Number(slider.value || 80);
-  if (isNaN(initial)) initial = 80;
-  initial = Math.max(0, Math.min(100, initial));
+  const initial = getAudioVolume();
   slider.value = initial;
 
   applyVolumeToAll(initial / 100);
 
   slider.addEventListener('input', (e) => {
     const v = Number(e.target.value);
-    setCookie('audioVolume', String(v), 365);
+    setAudioVolume(v);
     applyVolumeToAll(v / 100);
   });
 }

@@ -192,6 +192,9 @@ function verifyOrder() {
     nextLevelBtn.style.display = 'inline-flex';
     isVerified = true;
 
+    // Mark game as completed and update score
+    completeGame('linux');
+
     // Disable dragging
     stepElements.forEach(element => {
       element.draggable = false;

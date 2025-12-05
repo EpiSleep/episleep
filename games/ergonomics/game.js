@@ -107,6 +107,10 @@ class DateGame {
       case 'backwards':
         this.initBackwards();
         break;
+      case 'success':
+        // Mark game as completed when reaching success step
+        completeGame('ergo');
+        break;
     }
   }
 

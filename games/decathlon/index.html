@@ -36,6 +36,7 @@
     <source src="../../assets/music/decathlon_music.wav" type="audio/wav">
   </audio>
 
+  <script src="../../assets/js/cookie-manager.js"></script>
   <script src="../../assets/js/music-handler.js"></script>
 </body>
 </html>
@@ -75,6 +76,10 @@
   const BASE_PATH = "../../assets/images/bee/";
   let HIGH_POS_FILE = "";
   let LOW_POS_FILE = ""; 
+
+  // Game completion tracking
+  let gameCompleted = false;
+  let successfulHits = 0;
 
 
   // --- LOGIQUE D'IMAGE ET DÉFAITE ---
@@ -189,7 +194,17 @@
               // SUCCÈS - FRAPPE CORRECTE
               
               switchPosition(); 
-              
+              successfulHits++;
+
+              // Mark game as completed after 20 successful hits or reaching max difficulty
+              if (!gameCompleted && (successfulHits >= 20 || keySpacing <= MIN_KEY_SPACING)) {
+                  gameCompleted = true;
+                  if (typeof completeGame === 'function') {
+                      completeGame('decat');
+                      console.log('🎉 Decathlon game completed!');
+                  }
+              }
+
               // --- LOGIQUE DE DIFFICULTÉ PAR ESPACEMENT (TEMPS) ---
               if (keySpacing > MIN_KEY_SPACING) {
                   keySpacing -= SPACING_DECREMENT;
