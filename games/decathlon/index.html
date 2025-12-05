@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="../../assets/css/style.css" />
   <link rel="stylesheet" href="../../assets/css/decathlon.css" />
 
-
-
 </head>
 
 <body class="scanlines">
@@ -33,10 +31,20 @@
       
     </div>
   </div>
+
+  <audio id="background-music" loop>
+    <source src="../../assets/music/decathlon_music.wav" type="audio/wav">
+  </audio>
+
+  <script src="../../assets/js/music-handler.js"></script>
 </body>
 </html>
 
 <script>
+  // Initialize background music
+  document.addEventListener('DOMContentLoaded', () => {
+    initGameMusic('decathlon_music.wav');
+  });
 
   // Constantes DOM
   const availableKeys = 'qsdfghjklm'; 
