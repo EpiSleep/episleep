@@ -27,7 +27,7 @@ const levelData = [
     description: 'An arcade scanner to explore and visualize CVE vulnerabilities. Input, parsing, display — all in pixel-art.',
     cta: 'Launch scanner',
     image: 'https://dummyimage.com/900x400/1f243d/ffffff&text=CVE+Explorer',
-    link: 'games/cve-explorer/index.html'
+    link: 'games/cve-explorer/fish.html'
   },
   {
     id: 'linux-install',
