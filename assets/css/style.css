@@ -693,33 +693,33 @@ a {
   left: 210px;
 }
 
-.stars{
+.star{
   position: absolute;
 }
 
 #s1{
-  top: 0%;
-  left: 0%;
+  top: 75%;
+  left: 15.4%;
 }
 
 #s2{
-  top: 0%;
-  left: 0%;
+  top: 75%;
+  left: 31%;
 }
 
 #s3{
-  top: 0%;
-  left: 0%;
+  top: 70%;
+  left: 28.6%;
 }
 
 #s4{
-  top: 0%;
-  left: 0%;
+  top: 68%;
+  left: 55.3%;
 }
 
 #s5{
-  top: 0%;
-  left: 0%;
+  top: 66%;
+  left: 95.1%;
 }
 
 /* --- Bouton PLAY (Violet / Principal) --- */
