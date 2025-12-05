@@ -502,6 +502,12 @@ a {
   font-size: 24px;
 }
 
+#backbar{
+  background-color: #232020;
+  width: 100%;
+  height: 20px;
+}
+
 @media (max-width: 720px) {
   .stage-track { width: 1600px; }
   .stage-wrapper { padding: 12px; }
