@@ -7,7 +7,7 @@ const levelData = [
   {
     id: 'femmes-info',
     title: 'Women & IT',
-    description: 'A narrative adventure highlighting the heroines of computing. Videos, quizzes, and interactive archives await.',
+    description: '',
     cta: 'Discover the challenge',
     image: 'assets/images/femme.png',
     video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
@@ -47,11 +47,11 @@ const levelData = [
   }
 ];
 
-// Variable pour stocker les réponses du QCM
+
 let decathlonResponses = {};
 let currentQuestionIndex = 0;
 
-// Le QCM structuré complet
+
 const qcmData = [
     {
         id: 1,
@@ -165,9 +165,7 @@ const qcmData = [
     }
 ];
 
-// ====================================================================
-// 2. FONCTIONS DE LOGIQUE QCM ET PROFIL
-// ====================================================================
+
 
 function generateProfile() {
     let counts = { A: 0, B: 0, C: 0, D: 0 };
@@ -203,7 +201,7 @@ function nextQuestion(answer) {
     
     currentQuestionIndex++; 
     
-    // Ré-afficher la modale pour la suite
+   
     const decathlonContent = levelData.find(item => item.id === 'decathlon');
     if (decathlonContent) {
         renderModal(decathlonContent);
@@ -220,25 +218,23 @@ function attachQCMListeners() {
     });
 }
 
-// ====================================================================
-// 3. FONCTIONS D'INTERFACE UTILISATEUR (MODALE)
-// ====================================================================
+
 
 function closeModal() {
   const modal = document.querySelector('#levelModal');
   if (modal && modal.parentElement) {
     modal.parentElement.classList.remove('active');
     
-    // Arrêter la vidéo si elle joue
+   
     const video = modal.querySelector('video');
     if(video) {
         video.pause();
-        video.src = ""; // Reset pour éviter qu'elle continue en fond
+        video.src = ""; 
     }
   }
 }
 
-// Fonction pour les niveaux standards (avec support VIDÉO ajouté)
+
 function renderDefaultModal(content) {
     const modal = document.querySelector('#levelModal');
     const body = modal.querySelector('.body');
@@ -250,24 +246,24 @@ function renderDefaultModal(content) {
     heading.textContent = content.title;
     body.textContent = content.description;
     
-    // Image
+
     if (image) {
         image.src = content.image;
         image.alt = content.title;
         image.style.display = 'block';
     }
 
-    // Gestion des boutons & Vidéo
+    
     let playButtonHtml = `<a class="btn play-btn" href="${content.link}">${content.cta || 'Play'}</a>`;
     
-    // Logique Vidéo : Si le contenu a une vidéo, on configure le player
+   
     if (content.video && video) {
         video.style.display = 'block';
         video.src = content.video;
-        // Bouton spécial pour contrôler la vidéo
+        
         playButtonHtml = `<button class="btn play-btn video-toggle">Lecture Vidéo ▶</button>`;
     } else if (video) {
-        // Pas de vidéo pour ce niveau
+        
         video.style.display = 'none';
         video.pause();
     }
@@ -277,7 +273,7 @@ function renderDefaultModal(content) {
         
     `;
 
-    // Si c'est une vidéo, on attache l'événement JS au bouton qu'on vient de créer
+   
     if (content.video && video) {
         const videoBtn = actions.querySelector('.video-toggle');
         videoBtn.addEventListener('click', (e) => {
@@ -297,7 +293,7 @@ function renderDefaultModal(content) {
     }
 }
 
-// Fonction Principale de rendu (Router)
+
 function renderModal(content) {
     const modal = document.querySelector('#levelModal');
     if (!modal) return console.warn('Modal element (#levelModal) not found.');
@@ -308,17 +304,16 @@ function renderModal(content) {
     const actions = modal.querySelector('.actions');
     const video = modal.querySelector('video');
 
-    // ROUTER : Si ce n'est pas Decathlon, utiliser l'affichage standard (Vidéo ou Image simple)
+    
     if (content.id !== 'decathlon') {
         renderDefaultModal(content);
         return;
     }
 
-    // --- LOGIQUE SPÉCIFIQUE DECATHLON (QCM) ---
-    // On cache la vidéo pour le QCM
+   
     if(video) video.style.display = 'none';
 
-    // Si le QCM est terminé
+    
     if (currentQuestionIndex >= qcmData.length) {
         const finalProfile = generateProfile();
         heading.textContent = `Mission Briefing: ${finalProfile.title}`;
@@ -332,7 +327,7 @@ function renderModal(content) {
         `;
 
     } else {
-        // Afficher la question
+        
         const currentQ = qcmData[currentQuestionIndex];
         heading.textContent = `QCM Decathlon (${currentQ.id}/${qcmData.length})`;
         
@@ -356,7 +351,7 @@ function renderModal(content) {
         attachQCMListeners();
     }
     
-    // Réattacher la fermeture
+    
     document.querySelectorAll('.close-btn').forEach((btn) => btn.onclick = closeModal);
 }
 
@@ -366,7 +361,7 @@ function bindNodes() {
             const levelId = node.dataset.levelId;
             const content = levelData.find((item) => item.id === levelId);
 
-            // Réinitialiser le QCM si c'est Decathlon
+            
             if (levelId === 'decathlon') {
                 decathlonResponses = {};
                 currentQuestionIndex = 0;
@@ -415,7 +410,7 @@ function initDragToPan() {
     stageWrapper.scrollTop = scrollTop - (y - startY);
   });
   
-  // Touch support
+ 
   let touchStart = null;
   stageWrapper.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return;
@@ -431,9 +426,7 @@ function initDragToPan() {
   stageWrapper.addEventListener('touchend', () => { touchStart = null; });
 }
 
-// ====================================================================
-// 4. INITIALISATION
-// ====================================================================
+
 
 document.addEventListener('DOMContentLoaded', () => {
   bindNodes();
@@ -453,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 });
 
-// Fonctions Cookies et Score
+
 function setCookie(name, value, days) {
   let expires = "";
   if (days) {
@@ -475,7 +468,7 @@ function getCookie(name) {
   return null;
 }
 
-// Gestion barre de progression
+
 const element = document.getElementById('gameWindow');
 const progressbar = document.getElementById("progress");
 

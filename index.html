@@ -19,29 +19,30 @@
     </main>
   </div>
 
-<div class="modal-backdrop">
-    <div class="modal" id="levelModal">
+<div class="modal-backdrop" id="settingsModal">
+    <div class="modal">
       <header>
         <h3>Quick settings</h3>
         <button class="close-btn" aria-label="Close">✕</button>
       </header>
       <div class="body">
-        <p>Placeholders for settings: audio, shaders, accessibility, saves.</p>
+        <p>Ajustez vos préférences de jeu ici.</p>
         <div class="form-grid">
           <div class="form-control">
-            <label for="audio">Master volume</label>
+            <label for="audio">Volume Principal</label>
             <input id="audio" type="range" min="0" max="100" value="80" />
           </div>
           <div class="form-control">
-            <label for="retro">Retro vibes</label>
+            <label for="retro">Effet Rétro</label>
             <select id="retro">
               <option>CRT + scanlines</option>
               <option>Pixel sharp</option>
-              <option>Light mode (coming soon)</option>
             </select>
           </div>
-
-      </div>
+        </div>
+        </div>
+    </div>
+</div>
       
       <div class="body">Review the mission details and press Play when you are ready.</div>
       <div class="actions">
