@@ -3,18 +3,242 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Décathlon</title>
+  <title>Décathlon – Mission Rythme</title>
+
   <link rel="stylesheet" href="../../assets/css/style.css" />
-  <link rel="stylesheet" href="../../assets/css/decathlon.css"/>
+  <link rel="stylesheet" href="../../assets/css/decathlon.css" />
+
+
+
 </head>
+
 <body class="scanlines">
+  
+
   <div class="page-shell grid-overlay">
     <div class="wave-bg"></div>
-    <div class="game-shell card neon-border sport">
       <div class="sticky-footer">
         <a class="btn" href="../../level-select.html">Back to home</a>
       </div>
+
+    <div class="game-shell card neon-border sport">
+
+      <img id="exercise-image" alt="Exercice" />
+      
+      <div id="rhythm-game-area">
+          <div id="key-sequence">
+              </div>
+          <div id="hit-target"></div>
+          <div id="rhythm-message"></div> </div>
+      
     </div>
   </div>
 </body>
 </html>
+
+<script>
+
+  // Constantes DOM
+  const availableKeys = 'qsdfghjklm'; 
+  const image = document.getElementById("exercise-image");
+  const keySequenceElement = document.getElementById("key-sequence");
+  const rhythmMessageElement = document.getElementById("rhythm-message");
+  const hitTargetElement = document.getElementById('hit-target');
+  
+  // Constantes de jeu
+  const TIME_TO_HIT = 2000; // Temps de défilement de la note (2.0 secondes)
+  const HIT_WINDOW = 500; // Marge d'erreur de frappe (+/- 250ms)
+
+  // --- VARIABLES DE DIFFICULTÉ (ESPACEMENT TEMPOREL) ---
+  let keySpacing = 1500; // Intervalle initial de génération des touches (1500ms = 1.5s)
+  const MIN_KEY_SPACING = 300; // Intervalle minimum (300ms)
+  const SPACING_DECREMENT = 50; // Diminution de l'intervalle à chaque hit (50ms)
+
+  let gameActive = true; 
+  let isLowPosition = false; 
+  let keyGeneratorInterval; 
+
+  // File d'attente des notes
+  const activeKeys = []; 
+  
+  // Variables d'exercice
+  const params = new URLSearchParams(window.location.search);
+  const lastAnswer = params.get("profile");
+  const BASE_PATH = "../../assets/images/bee/";
+  let HIGH_POS_FILE = "";
+  let LOW_POS_FILE = ""; 
+
+
+  // --- LOGIQUE D'IMAGE ET DÉFAITE ---
+
+  function determineExercisePaths(answer) {
+    switch (answer) {
+      case "A": HIGH_POS_FILE = "pompe_haut.webp"; LOW_POS_FILE = "pompe_bas.webp"; break;
+      case "B": HIGH_POS_FILE = "curl_haut.webp"; LOW_POS_FILE = "curl_bas.webp"; break;
+      case "C": HIGH_POS_FILE = "fente_haut.webp"; LOW_POS_FILE = "fente_bas.webp"; break;
+      case "D": HIGH_POS_FILE = "squat_haut.webp"; LOW_POS_FILE = "squat_bas.webp"; break;
+      default: return false;
+    }
+    return true;
+  }
+  
+  function setHighPosition() { image.src = BASE_PATH + HIGH_POS_FILE; isLowPosition = false; }
+  function setLowPosition() { image.src = BASE_PATH + LOW_POS_FILE; isLowPosition = true; }
+  function switchPosition() { isLowPosition ? setHighPosition() : setLowPosition(); }
+
+
+  /**
+   * 🛑 Arrête le jeu (raté de timing, mauvaise touche, ou note manquée).
+   */
+  function gameOver() {
+      if (!gameActive) return;
+      gameActive = false;
+      
+      clearInterval(keyGeneratorInterval); 
+      document.querySelectorAll('.key-note').forEach(note => note.style.animationPlayState = 'paused');
+
+      hitTargetElement.style.backgroundColor = '#ff0000';
+      hitTargetElement.style.boxShadow = '0 0 20px #ff0000';
+      
+      rhythmMessageElement.textContent = "PERDU !";
+      rhythmMessageElement.style.color = '#ff0000';
+      rhythmMessageElement.style.fontSize = '4em';
+
+      console.log("GAME OVER.");
+  }
+
+  /**
+   * ❌ Vérifie si la note a été manquée après son passage.
+   * La défaite est immédiate au moment où la note sort du temps imparti.
+   */
+  function checkMissedNote(noteElement) {
+      const target = activeKeys[0]; 
+      
+      // La note a dépassé la fenêtre de frappe sans être frappée
+      if (target && target.element === noteElement) {
+          console.log(`❌ NOTE MANQUÉE : ${target.key} (Sortie)`);
+          activeKeys.shift(); 
+          noteElement.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
+          gameOver(); // **DÉFAITE IMMÉDIATE**
+      }
+      
+      if (noteElement.parentNode) {
+          noteElement.parentNode.removeChild(noteElement);
+      }
+  }
+
+
+  /**
+   * ➕ Génère une nouvelle note et lance l'animation.
+   */
+  function addKeyToSequence() {
+      if (!gameActive) return;
+
+      const randomIndex = Math.floor(Math.random() * availableKeys.length);
+      const newKey = availableKeys[randomIndex];
+
+      const noteElement = document.createElement('div');
+      noteElement.className = 'key-note';
+      noteElement.textContent = newKey.toUpperCase();
+      
+      // Le temps d'arrivée n'est plus utilisé pour le spawning, seulement le scoring.
+      const arrivalTime = Date.now() + TIME_TO_HIT;
+
+      keySequenceElement.appendChild(noteElement);
+
+      noteElement.style.animation = `scroll-key ${TIME_TO_HIT / 1000}s linear forwards`;
+
+      activeKeys.push({
+          key: newKey,
+          element: noteElement,
+          arrivalTime: arrivalTime,
+      });
+
+      // Planifier la vérification de 'raté' : immédiatement après la fenêtre de frappe
+      setTimeout(() => {
+          checkMissedNote(noteElement);
+      }, TIME_TO_HIT + HIT_WINDOW);
+  }
+
+
+  /**
+   * ⌨️ Gère l'événement de pression de touche par le joueur.
+   */
+  document.addEventListener('keydown', (event) => {
+      if (!gameActive || activeKeys.length === 0) return;
+
+      const pressedKey = event.key.toLowerCase();
+      const targetNote = activeKeys[0]; 
+
+      // 1. Vérifier la touche
+      if (pressedKey === targetNote.key) {
+          
+          const currentTime = Date.now();
+          const diff = targetNote.arrivalTime - currentTime; 
+
+          // 2. Vérifier le timing
+          if (Math.abs(diff) <= HIT_WINDOW) {
+              // SUCCÈS - FRAPPE CORRECTE
+              
+              switchPosition(); 
+              
+              // --- LOGIQUE DE DIFFICULTÉ PAR ESPACEMENT (TEMPS) ---
+              if (keySpacing > MIN_KEY_SPACING) {
+                  keySpacing -= SPACING_DECREMENT;
+                  if (keySpacing < MIN_KEY_SPACING) {
+                      keySpacing = MIN_KEY_SPACING;
+                  }
+                  
+                  // Mettre à jour l'intervalle de génération des clés
+                  clearInterval(keyGeneratorInterval);
+                  keyGeneratorInterval = setInterval(addKeyToSequence, keySpacing);
+                  console.log(`Nouvel intervalle de spawn : ${keySpacing}ms`);
+              }
+
+              // Effet visuel de succès et suppression
+              targetNote.element.style.backgroundColor = '#ffff00';
+              targetNote.element.style.color = '#000';
+              targetNote.element.style.boxShadow = '0 0 10px #ffff00';
+              
+              activeKeys.shift(); 
+              targetNote.element.remove(); 
+              
+          } else {
+              // ÉCHEC - MAUVAIS TIMING
+              console.log(`❌ BAD TIMING: ${targetNote.key}`);
+              gameOver();
+          }
+
+      } 
+      // 3. Touche incorrecte
+      else if (availableKeys.includes(pressedKey)) {
+          console.log(`⚠️ Touche incorrecte : ${pressedKey}`);
+          gameOver(); 
+      }
+  });
+
+
+  /**
+   * 🚀 Démarrage du jeu au chargement de la page.
+   */
+  window.onload = function() {
+      if (!determineExercisePaths(lastAnswer)) return;
+      setHighPosition(); 
+
+      rhythmMessageElement.textContent = `Prêt ?`;
+      rhythmMessageElement.style.color = '#00ff00';
+      rhythmMessageElement.style.fontSize = '3em';
+      
+      // Démarrage simple après 2 secondes de préparation
+      setTimeout(() => {
+          rhythmMessageElement.textContent = ''; // Cache le message 'Prêt ?'
+          
+          // La première note est générée après 0ms, puis le générateur prend le relais.
+          addKeyToSequence(); 
+          
+          // Lancer le générateur continu des notes avec l'intervalle initial
+          keyGeneratorInterval = setInterval(addKeyToSequence, keySpacing); 
+          
+      }, 2000); 
+  };
+</script>
