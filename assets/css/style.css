@@ -690,6 +690,10 @@ a {
   left: 160px;
 }
 
+#linux{
+  left: 210px;
+}
+
 /* --- Bouton PLAY (Violet / Principal) --- */
 #levelModal .play-btn {
     background: linear-gradient(135deg, #7b2cbf, #9d4edd); /* Joli dégradé violet */
