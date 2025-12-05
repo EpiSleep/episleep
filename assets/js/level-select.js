@@ -517,7 +517,7 @@ if(element && progressbar) {
     }
     function handleMouseOut() {
       const score = getCookie('score') || 0;
-      progressbar.style.width = (25 * score)+'%';
+      progressbar.style.width = (20 * score)+'%';
       const woman = document.getElementById('women');
       const decat = document.getElementById('decat');
       const cve = document.getElementById('cve');
