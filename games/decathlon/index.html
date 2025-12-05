@@ -108,7 +108,7 @@
       hitTargetElement.style.backgroundColor = '#ff0000';
       hitTargetElement.style.boxShadow = '0 0 20px #ff0000';
       
-      rhythmMessageElement.textContent = "PERDU !";
+      rhythmMessageElement.textContent = "LOOSE";
       rhythmMessageElement.style.color = '#ff0000';
       rhythmMessageElement.style.fontSize = '4em';
 
@@ -124,7 +124,7 @@
       
       // La note a dépassé la fenêtre de frappe sans être frappée
       if (target && target.element === noteElement) {
-          console.log(`❌ NOTE MANQUÉE : ${target.key} (Sortie)`);
+          console.log(`❌ Missed note : ${target.key} (Exit)`);
           activeKeys.shift(); 
           noteElement.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
           gameOver(); // **DÉFAITE IMMÉDIATE**
@@ -200,7 +200,7 @@
                   // Mettre à jour l'intervalle de génération des clés
                   clearInterval(keyGeneratorInterval);
                   keyGeneratorInterval = setInterval(addKeyToSequence, keySpacing);
-                  console.log(`Nouvel intervalle de spawn : ${keySpacing}ms`);
+                  console.log(`New spawn interval : ${keySpacing}ms`);
               }
 
               // Effet visuel de succès et suppression
@@ -220,7 +220,7 @@
       } 
       // 3. Touche incorrecte
       else if (availableKeys.includes(pressedKey)) {
-          console.log(`⚠️ Touche incorrecte : ${pressedKey}`);
+          console.log(`⚠️ Incorrect key : ${pressedKey}`);
           gameOver(); 
       }
   });
@@ -233,7 +233,7 @@
       if (!determineExercisePaths(lastAnswer)) return;
       setHighPosition(); 
 
-      rhythmMessageElement.textContent = `Prêt ?`;
+      rhythmMessageElement.textContent = `Ready ?`;
       rhythmMessageElement.style.color = '#00ff00';
       rhythmMessageElement.style.fontSize = '3em';
       
