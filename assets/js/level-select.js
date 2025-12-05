@@ -18,7 +18,7 @@ const levelData = [
     title: 'Decathlon Data Rush',
     description: 'Sporty mini-games fused with micro-optimization challenges. Get your algorithms and sneakers ready!',
     cta: 'Load the map',
-    image: 'https://dummyimage.com/900x400/173f2d/ffffff&text=Decathlon',
+    image: 'assets/images/decathlon.webp',
     link: 'games/decathlon/index.html'
   },
   {
@@ -55,121 +55,120 @@ let currentQuestionIndex = 0;
 const qcmData = [
   {
     id: 1,
-    question: "1. Quel est votre niveau de pratique sportive actuel ?",
+    question: "1. What is your current level of sports practice?",
     options: {
-      A: "Débutant : Je commence tout juste.",
-      B: "Intermédiaire : 1 à 2 fois par semaine.",
-      C: "Avancé : 3 à 4 fois par semaine.",
-      D: "Expert : 5 fois et plus par semaine.",
+      A: "Beginner: I've just started.",
+      B: "Intermediate: 1 to 2 times a week.",
+      C: "Advanced: 3 to 4 times a week.",
+      D: "Expert: 5 times a week or more.",
     },
   },
   {
     id: 2,
     question:
-      "2. Combien de temps total consacrez-vous ou souhaitez-vous consacrer au sport par semaine ?",
+      "2. What is the total time you dedicate or wish to dedicate to sports per week?",
     options: {
-      A: "Moins de 1 heure",
-      B: "Entre 1 et 3 heures",
-      C: "Entre 3 et 6 heures",
-      D: "7 heures ou plus",
+      A: "Less than 1 hour",
+      B: "Between 1 and 3 hours",
+      C: "Between 3 and 6 hours",
+      D: "7 hours or more",
     },
   },
   {
     id: 3,
-    question: "3. Quel est votre objectif principal en faisant du sport ?",
+    question: "3. What is your main goal for exercising?",
     options: {
-      A: "Améliorer ma santé générale et mon bien-être.",
-      B: "Perte de poids ou maintien d'un poids de forme.",
-      C: "Gagner en muscle/force ou performance.",
-      D: "Préparation à une compétition ou à un défi.",
+      A: "Improve my general health and well-being.",
+      B: "Weight loss or maintaining a healthy weight.",
+      C: "Gain muscle/strength or improve performance.",
+      D: "Preparation for a competition or a challenge.",
     },
   },
   {
     id: 4,
     question:
-      "4. Quel type d'activité vous attire le plus ou pratiquez-vous déjà ?",
+      "4. What type of activity attracts you the most or do you already practice?",
     options: {
-      A: "Endurance (Course, vélo, natation...).",
-      B: "Force/résistance (Musculation, Crossfit...).",
-      C: "Sports collectifs ou de raquette.",
-      D: "Flexibilité/bien-être (Yoga, Pilates, danse...).",
+      A: "Endurance (Running, cycling, swimming...).",
+      B: "Strength/Resistance (Weight training, Crossfit...).",
+      C: "Team or racket sports.",
+      D: "Flexibility/Well-being (Yoga, Pilates, dance...).",
     },
   },
   {
     id: 5,
     question:
-      "5. Quel est votre niveau de motivation ou d'engagement à long terme ?",
+      "5. What is your level of long-term motivation or commitment?",
     options: {
-      A: "Faible : si j'ai le temps/l'envie.",
-      B: "Modéré : J'essaie de rester régulier.",
-      C: "Fort : Je planifie mes séances à l'avance.",
-      D: "Très Fort : Le sport est essentiel à mon planning.",
+      A: "Low: if I have the time/desire.",
+      B: "Moderate: I try to stay consistent.",
+      C: "Strong: I plan my sessions in advance.",
+      D: "Very Strong: Sport is essential to my schedule.",
     },
   },
   {
     id: 6,
-    question: "6. Quel est votre environnement de pratique préféré ?",
+    question: "6. What is your preferred practice environment?",
     options: {
-      A: "Principalement en extérieur.",
-      B: "Principalement en intérieur (salle, maison).",
-      C: "Un équilibre des deux.",
-      D: "Je n'ai pas de préférence.",
+      A: "Mainly outdoors.",
+      B: "Mainly indoors (gym, home).",
+      C: "A balance of both.",
+      D: "I have no preference.",
     },
   },
   {
     id: 7,
-    question: "7. Préférez-vous vous entraîner seul(e) ou en groupe ?",
+    question: "7. Do you prefer to train alone or in a group?",
     options: {
-      A: "Seul(e) : J'aime la concentration et l'autonomie.",
-      B: "En groupe/équipe : J'ai besoin de l'émulation.",
-      C: "Avec un(e) partenaire ou un petit groupe.",
-      D: "J'alterne entre le solo et le groupe.",
+      A: "Alone: I like concentration and autonomy.",
+      B: "In a group/team: I need the emulation.",
+      C: "With a partner or small group.",
+      D: "I alternate between solo and group.",
     },
   },
   {
     id: 8,
-    question: "8. Quel est votre rapport au repos et à la récupération ?",
+    question: "8. What is your approach to rest and recovery?",
     options: {
-      A: "Je ne m'en préoccupe pas vraiment.",
-      B: "J'essaie d'intégrer un jour de repos par semaine.",
-      C: "Je planifie activement mon sommeil et mes jours de repos.",
-      D: "La récupération active est aussi importante que l'entraînement.",
+      A: "I don't really worry about it.",
+      B: "I try to include a rest day per week.",
+      C: "I actively plan my sleep and rest days.",
+      D: "Active recovery is as important as training.",
     },
   },
   {
     id: 9,
     question:
-      "9. Quel est votre niveau de flexibilité pour les horaires d'entraînement ?",
+      "9. What is your level of flexibility regarding training times?",
     options: {
-      A: "Très contraint : Seulement le week-end ou très tôt/tard.",
-      B: "Assez flexible : Je peux m'adapter à différents moments.",
-      C: "Je suis très structuré : même heure tous les jours.",
-      D: "Je peux m'adapter, mais j'ai une forte préférence.",
+      A: "Very constrained: Only on weekends or very early/late.",
+      B: "Quite flexible: I can adapt to different times.",
+      C: "I am very structured: same time every day.",
+      D: "I can adapt, but I have a strong preference.",
     },
   },
   {
     id: 10,
-    question: "10. Comment gérez-vous les blessures ou les douleurs légères ?",
+    question: "10. How do you manage minor injuries or pain?",
     options: {
-      A: "Je continue l'entraînement sans rien changer.",
-      B: "Je réduis l'intensité ou je prends un jour de repos.",
-      C: "Je consulte un professionnel dès que la douleur persiste.",
-      D: "J'adapte mes exercices pour contourner la zone douloureuse.",
+      A: "I continue training without making any changes.",
+      B: "I reduce the intensity or take a rest day.",
+      C: "I consult a professional as soon as the pain persists.",
+      D: "I adapt my exercises to work around the painful area.",
     },
   },
   {
     id: 11,
     question:
-      "11. Quel type d'exercice de renforcement musculaire de base au poids du corps vous souhaitez le plus améliorer techniquement ?",
+      "11. What type of basic bodyweight strength exercise do you most want to technically improve?",
     options: {
-      A: "Mouvements de Poussée (Pompes, Dips).",
-      B: "Mouvements de Tirage (Tractions, Rameur inversé).",
-      C: "Mouvements du Bas du corps (Squats, Fentes).",
-      D: "Gainage et abdominaux profonds (Planche, Crunch).",
+      A: "Push movements (Push-ups, Dips).",
+      B: "Pull movements (Pull-ups, Inverted rows).",
+      C: "Lower body movements (Squats, Lunges).",
+      D: "Sheathing and deep abdominals (Plank, Crunch).",
     },
   },
-];
-
+];  
 
 
 function generateProfile() {
