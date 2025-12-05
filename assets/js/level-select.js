@@ -483,11 +483,10 @@ if(element && progressbar) {
     function handleMouseOver() {
       const score = getCookie('score') || 0; 
       progressbar.style.width = (25 * score)+'%';
-      const woman = document.getElementById('woman');
+      const woman = document.getElementById('women');
       const decat = document.getElementById('decat');
       const cve = document.getElementById('cve');
       const ergo = document.getElementById('ergo');
-      console.log(getCookie('woman'));
       if (getCookie('woman') == "1"){
         woman.src = "assets/images/medals/femme.png";
       }
