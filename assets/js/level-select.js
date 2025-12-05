@@ -30,6 +30,14 @@ const levelData = [
     link: '/games/cve-explorer/index.html'
   },
   {
+    id: 'linux-install',
+    title: 'Linux Installation',
+    description: 'Learn the correct order of steps to install Linux. Drag and drop the steps to arrange them correctly and master the installation process!',
+    cta: 'Start installation',
+    image: 'https://dummyimage.com/900x400/1a1a2e/00ff00&text=Linux+Install',
+    link: 'games/linux-install/index.html'
+  },
+  {
     id: 'ergonomie',
     title: 'Dark Pattern Lab',
     description: 'Experiment with (and fix) devious interfaces. An ergonomics lab to put users back at the center.',
@@ -468,10 +476,46 @@ if(element && progressbar) {
     function handleMouseOver() {
       const score = getCookie('score') || 0; 
       progressbar.style.width = (25 * score)+'%';
+      const woman = document.getElementById('women');
+      const decat = document.getElementById('decat');
+      const cve = document.getElementById('cve');
+      const ergo = document.getElementById('ergo');
+      const linux = document.getElementById('linux');
+      if (getCookie('woman') == "1"){
+        woman.src = "assets/images/medals/femme.png";
+      }
+      if (getCookie('decat') == "1"){
+        decat.src = "assets/images/medals/decathlon.png";
+      }
+      if (getCookie('cve') == "1"){
+        cve.src = "assets/images/medals/peche.png";
+      }
+      if (getCookie('ergo') == "1"){
+        ergo.src = "assets/images/medals/brain.png";
+      }
+      if (getCookie('linux') == "1"){
+        ergo.src = "assets/images/medals/linux.png";
+      }
     }
     function handleMouseOut() {
       const score = getCookie('score') || 0;
       progressbar.style.width = (25 * score)+'%';
+      const woman = document.getElementById('women');
+      const decat = document.getElementById('decat');
+      const cve = document.getElementById('cve');
+      const ergo = document.getElementById('ergo');
+      if (getCookie('woman') == "1"){
+        woman.src = "assets/images/medals/femme.png";
+      }
+      if (getCookie('decat') == "1"){
+        decat.src = "assets/images/medals/decathlon.png";
+      }
+      if (getCookie('cve') == "1"){
+        cve.src = "assets/images/medals/peche.png";
+      }
+      if (getCookie('ergo') == "1"){
+        ergo.src = "assets/images/medals/brain.png";
+      }
     }
     element.addEventListener('mouseover', handleMouseOver);
     element.addEventListener('mouseout', handleMouseOut);

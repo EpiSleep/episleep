@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function launchGame(){
   setCookie('score', 0, 2);
+  setCookie('woman', 0, 2);
+  setCookie('decat', 0, 2);
+  setCookie('cve', 0, 2);
+  setCookie('ergo', 0, 2);
+  setCookie('linux', 0, 2);
   window.location.replace("level-select.html");
 }
 
