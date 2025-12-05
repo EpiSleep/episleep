@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,64 +8,36 @@
 </head>
 <body class="scanlines">
   <div class="page-shell grid-overlay">
-    <!--<div class="wave-bg"></div>
-    <header class="badge-row">
-      <span class="pill"><span class="glow-dot"></span>Build 0.1 — Base Arcade</span>
-      <span class="pill"><span class="glow-dot"></span>8 devs ready</span>
-      <span class="pill"><span class="glow-dot"></span>DA: Oh les beaux boutons</span>
-    </header>-->
-
     <main class="hero card neon-border">
       <div class="logo">NIRD Quest Hub</div>
       <h1>Join the computing revolution, and discover how to take back control of your devices!</h1>
-      <div class="actions">
+      <div class="actions main-actions">
         <a class="btn" onclick="launchGame()" id="openGames">Play</a>
         <button class="btn secondary" id="openSettings">Settings</button>
-        <button class="btn secondary" id="openCredits">Legal notice</button>
+        <button class="btn secondary" id="openCredits">Credits</button>
       </div>
-
-      <!--<div class="tile-grid">
-        <div class="tile">
-          <p class="section-title">Missions</p>
-          <div class="tag"><span class="glow-dot"></span>Femmes & Info</div>
-          <div class="tag"><span class="glow-dot"></span>Décathlon</div>
-          <div class="tag"><span class="glow-dot"></span>CVE Explorer</div>
-          <div class="tag"><span class="glow-dot"></span>Ergonomie</div>
-        </div>
-        <div class="tile">
-          <p class="section-title">Structure prête</p>
-          <p class="body">
-            Arborescence découpée par défi, assets séparés, base CSS/JS commune et modales
-            réutilisables. Branche tes assets et tes mini-jeux directement.
-          </p>
-        </div>
-        <div class="tile">
-          <p class="section-title">Note DA</p>
-          <p class="body">Buttons néon inspirés du défi « Oh les beaux boutons ».</p>
-        </div>
-      </div>-->
     </main>
   </div>
 
   <div class="modal-backdrop" id="settingsModal">
     <div class="modal">
       <header>
-        <h3>Paramètres rapides</h3>
-        <button class="close-btn" aria-label="Fermer">✕</button>
+        <h3>Quick settings</h3>
+        <button class="close-btn" aria-label="Close">✕</button>
       </header>
       <div class="body">
-        <p>Placeholders pour tes réglages : audio, shaders, accessibilité, sauvegardes.</p>
+        <p>Placeholders for settings: audio, shaders, accessibility, saves.</p>
         <div class="form-grid">
           <div class="form-control">
-            <label for="audio">Volume master</label>
+            <label for="audio">Master volume</label>
             <input id="audio" type="range" min="0" max="100" value="80" />
           </div>
           <div class="form-control">
-            <label for="retro">Vibes rétro</label>
+            <label for="retro">Retro vibes</label>
             <select id="retro">
               <option>CRT + scanlines</option>
               <option>Pixel sharp</option>
-              <option>Mode clair (bientôt)</option>
+              <option>Light mode (coming soon)</option>
             </select>
           </div>
         </div>
@@ -76,16 +48,41 @@
   <div class="modal-backdrop" id="creditsModal">
     <div class="modal">
       <header>
-        <h3>Crédits & équipe</h3>
-        <button class="close-btn" aria-label="Fermer">✕</button>
+        <h3>Credits</h3>
+        <button class="close-btn" aria-label="Close">✕</button>
       </header>
       <div class="body">
-        <p>Hub construit pour préparer les défis de la Nuit de l'Info.</p>
+        <p>Hub built to prepare challenges for Nuit de l'Info.</p>
+
+        <h4 class="section-title">Team</h4>
         <ul>
-          <li>DA : Oh les beaux boutons (défi 485)</li>
-          <li>Équipe : 8 builders prêts à brancher leurs jeux</li>
-          <li>Tech : HTML/CSS/JS vanilla, modales réutilisables, niveau scroll horizontal</li>
+          <li>Ehrhardt Victor</li>
+          <li>Roullin Léon</li>
+          <li>Grollemund Flavie</li>
+          <li>Muller Antoine</li>
+          <li>Scheliquet Antoine</li>
+          <li>Bauerr Chloé</li>
+          <li>Zurbach Daniel</li>
+          <li>Althaus Tom</li>
         </ul>
+
+        <h4 class="section-title">Links & License</h4>
+        <ul>
+          <li><a href="https://github.com/EpiSleep/episleep" target="_blank" rel="noopener">EpiSleep repository</a></li>
+          <li>Licensed under the <a href="https://mit-license.org/" target="_blank" rel="noopener">Apache License 2.0</a></li>
+        </ul>
+
+        <h4 class="section-title">Challenges</h4>
+        <ul>
+          <li><a href="https://www.nuitdelinfo.com/inscription/defis/174" class="challenge-link">Défi de la nuit 2025</a></li>
+          <li><a href="https://www.nuitdelinfo.com/inscription/defis/444" class="challenge-link">L'ergonomie : simplifier pour mieux vivre</a></li>
+          <li><a href="https://www.nuitdelinfo.com/inscription/defis/470" class="challenge-link">Femmes et Informatique</a></li>
+          <li><a href="https://www.nuitdelinfo.com/inscription/defis/485" class="challenge-link">Oh les beaux boutons</a></li>
+          <li><a href="https://www.nuitdelinfo.com/inscription/defis/497" class="challenge-link">🏆 Devenez le CTO de Votre Santé Posturale</a></li>
+          <li><a href="https://www.nuitdelinfo.com/inscription/defis/505" class="challenge-link">CVE Explorer — Visual Threat Intelligence Challenge</a></li>
+        </ul>
+
+        <p class="muted">Tech: HTML / CSS / Vanilla JS</p>
       </div>
     </div>
   </div>
