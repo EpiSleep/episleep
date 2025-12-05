@@ -1,6 +1,23 @@
 const settingsModal = document.querySelector('#settingsModal');
 const creditsModal = document.querySelector('#creditsModal');
 
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    // Calcule la date d'expiration
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  // Crée la chaîne de cookie. Le "path=/" rend le cookie accessible sur tout le site.
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Lax";
+}
+
+function launchGame(){
+  setCookie('score', 0, 2);
+  window.location.replace("level-select.html");
+}
+
 function bindModal(triggerSelector, modal) {
   const trigger = document.querySelector(triggerSelector);
   if (!trigger || !modal) return;

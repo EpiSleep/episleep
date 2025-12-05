@@ -508,6 +508,12 @@ a {
   height: 20px;
 }
 
+#progress{
+  height: 100%;
+  background: linear-gradient(to right, #1e66ae 0%, #dd5fd4 25%, #f99fb0 50%, #fed464 75%);
+  width: 25%;
+}
+
 @media (max-width: 720px) {
   .stage-track { width: 1600px; }
   .stage-wrapper { padding: 12px; }
