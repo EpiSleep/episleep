@@ -18,7 +18,7 @@ const levelData = [
     title: 'Decathlon Data Rush',
     description: 'Sporty mini-games fused with micro-optimization challenges. Get your algorithms and sneakers ready!',
     cta: 'Load the map',
-    image: 'assets/images/decathlon.webp',
+    image: 'assets/images/thumb_decat.png',
     link: 'games/decathlon/index.html'
   },
   {
@@ -26,7 +26,7 @@ const levelData = [
     title: 'CVE Explorer',
     description: 'An arcade scanner to explore and visualize CVE vulnerabilities. Input, parsing, display — all in pixel-art.',
     cta: 'Launch scanner',
-    image: 'https://dummyimage.com/900x400/1f243d/ffffff&text=CVE+Explorer',
+    image: 'assets/images/thumb_fish.png',
     link: 'games/cve-explorer/fish.html'
   },
   {
@@ -34,7 +34,7 @@ const levelData = [
     title: 'Linux Installation',
     description: 'Learn the correct order of steps to install Linux. Drag and drop the steps to arrange them correctly and master the installation process!',
     cta: 'Start installation',
-    image: 'https://dummyimage.com/900x400/1a1a2e/00ff00&text=Linux+Install',
+    image: 'assets/images/thumb_linux.png',
     link: 'games/linux-install/index.html'
   },
   {
@@ -42,7 +42,7 @@ const levelData = [
     title: 'Dark Pattern Lab',
     description: 'Experience the world\'s most frustrating form! Validate a simple date through various complex steps. A perfect example of terrible UX design.',
     cta: 'Start the challenge',
-    image: 'https://dummyimage.com/900x400/3b1b2e/ffffff&text=Dark+Pattern+Lab',
+    image: 'assets/images/thumb_ergo.png',
     link: 'games/ergonomics/index.html'
   }
 ];
