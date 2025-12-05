@@ -44,7 +44,9 @@ const levelData = [
     cta: 'Start the challenge',
     image: 'https://dummyimage.com/900x400/3b1b2e/ffffff&text=Dark+Pattern+Lab',
     link: 'games/ergonomics/index.html'
-  }
+  },
+  // L'exemple 'new-simple-info' doit être retiré du tableau levelData car il n'est pas un niveau cliquable.
+  // Les étoiles seront gérées séparément.
 ];
 
 
@@ -247,6 +249,45 @@ function closeModal() {
 }
 
 
+/**
+ * Affiche une modale simple (Titre et Description) pour les éléments comme les étoiles.
+ * Masque les images, vidéos et boutons d'action spécifiques aux niveaux.
+ */
+function renderSimpleInfoModal(title, bodyText) {
+    const modal = document.querySelector('#levelModal');
+    if (!modal) return console.warn('Modal element (#levelModal) not found.');
+
+    const body = modal.querySelector('.body');
+    const heading = modal.querySelector('h3');
+    const image = modal.querySelector('img');
+    const video = modal.querySelector('video');
+    const actions = modal.querySelector('.actions');
+
+    // 1. Mise à jour du contenu
+    heading.textContent = title;
+    body.innerHTML = `<p>${bodyText}</p>`;
+    
+    // 2. Masquage des éléments non pertinents
+    if (image) image.style.display = 'none';
+    if (video) {
+        video.style.display = 'none';
+        video.pause();
+        video.src = "";
+    }
+    
+    // Supprimer le bouton "Play" (les actions)
+    actions.innerHTML = ``; 
+
+    // 3. Affichage de la modale
+    if (modal.parentElement) {
+        modal.parentElement.classList.add('active');
+    }
+    
+    // S'assurer que les boutons de fermeture fonctionnent (ils sont attachés dans DOMContentLoaded)
+    document.querySelectorAll('.close-btn').forEach((btn) => btn.onclick = closeModal);
+}
+
+
 function renderDefaultModal(content) {
     const modal = document.querySelector('#levelModal');
     const body = modal.querySelector('.body');
@@ -259,10 +300,14 @@ function renderDefaultModal(content) {
     body.textContent = content.description;
     
 
-    if (image) {
+    if (content.image && image) {
         image.src = content.image;
         image.alt = content.title;
         image.style.display = 'block';
+    } else if (image) {
+        // Ajout pour masquer l'image si content.image est null/undefined (comme dans la modale simple)
+        image.style.display = 'none';
+        image.src = '';
     }
 
 
@@ -275,9 +320,10 @@ function renderDefaultModal(content) {
 
         playButtonHtml = `<button class="btn play-btn video-toggle">Lecture Vidéo ▶</button>`;
     } else if (video) {
-
+        // Ajout pour masquer la vidéo si content.video est null/undefined
         video.style.display = 'none';
         video.pause();
+        video.src = "";
     }
 
   actions.innerHTML = `
@@ -288,14 +334,19 @@ function renderDefaultModal(content) {
 
     if (content.video && video) {
         const videoBtn = actions.querySelector('.video-toggle');
-        videoBtn.addEventListener('click', (e) => {
+        // Nettoyer l'écouteur précédent si nécessaire (bonne pratique)
+        const oldVideoBtn = actions.querySelector('.video-toggle');
+        if (oldVideoBtn) oldVideoBtn.replaceWith(oldVideoBtn.cloneNode(true));
+        
+        const newVideoBtn = actions.querySelector('.video-toggle');
+        newVideoBtn.addEventListener('click', (e) => {
             e.preventDefault();
             if (video.paused) {
                 video.play();
-                videoBtn.textContent = "Pause ⏸";
+                newVideoBtn.textContent = "Pause ⏸";
             } else {
                 video.pause();
-                videoBtn.textContent = "Lecture Vidéo ▶";
+                newVideoBtn.textContent = "Lecture Vidéo ▶";
             }
         });
     }
@@ -365,7 +416,9 @@ function renderModal(content) {
     document.querySelectorAll('.close-btn').forEach((btn) => btn.onclick = closeModal);
 }
 
+// REMPLACEMENT de la fonction bindNodes existante
 function bindNodes() {
+    // Événement pour les NIVEAUX
     document.querySelectorAll('[data-level-id]').forEach((node) => {
         node.addEventListener('click', () => {
             const levelId = node.dataset.levelId;
@@ -381,10 +434,43 @@ function bindNodes() {
             }
         });
     });
+
+    // Événement pour les ÉTOILES (NOUVEAU)
+    document.querySelectorAll('.star').forEach((star) => {
+        star.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+            
+            const starId = star.id;
+            let title = "Étoile d'Information";
+            let description = "Information générale sur la progression ou la carte.";
+
+            // Logique de contenu spécifique à chaque étoile :
+            if (starId === 's1') {
+                 title = "NIRD Initiative: Progress Update";
+                 description = "Nature and Objectives A collective of teachers is leading an initiative advocating for open-source and eco-responsible digital technology in educational institutions. This initiative aims to reconcile digital transformation with ecological transition in primary and secondary schools. It serves as a response to the end of Windows 10 support and the reliance on proprietary solutions.";
+            } else if (starId === 's2') {
+                 title = "The Three NIRD Pillars";
+                 description = "Inclusion: Equitable access to digital technology and bridging the digital divide. Responsibility: Reasoned use of sovereign technologies that respect personal data. Sustainability: Fighting planned obsolescence, controlling costs, and extending the lifespan of equipment. Implementation of the Approach The approach is structured around three key stages: mobilization, experimentation, and integration. It is designed to be co-constructed with participants and remains intentionally flexible to adapt to local contexts. Initially, it targets interested teachers, who are invited to join a dedicated Tchap forum.";
+            } else if (starId === 's3') {
+                 title = "Role of Linux and Refurbishment";
+                 description = "Gradual adoption of Linux as the technical foundation and primary driver of the initiative. Computer refurbishment (often performed with students) to equip the school fleet, families, or neighboring schools. Opening up new pedagogical possibilities centered on open-source digital tools.";
+            } else if (starId === 's4') {
+                 title = "Origin, Status, and Expansion";
+                 description = "Inspired by the NIRD establishment project at Lycée Carnot in Bruay-la-Buissière. A spontaneous grassroots initiative, currently without official recognition. Ambition to federate existing initiatives and spread to other pilot schools.";
+            } else if (starId === 's5') {Explora
+                 title = "Resources and Participation";
+                 description = "Resources offered: A \"NIRD approach\" Linux distribution, GitLab, a webpage for local authorities, and a detailed advocacy kit.Communication tools: Tchap channel, Mastodon account, and upcoming webinars.";
+            }
+            
+            renderSimpleInfoModal(title, description);
+        });
+    });
 }
+
 
 function initDragToPan() {
   const stageWrapper = document.querySelector(".stage-wrapper");
+// ... (reste de initDragToPan inchangé)
   if (!stageWrapper) return;
 
   let isDragging = false;

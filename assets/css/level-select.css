@@ -38,3 +38,16 @@ body {
   cursor: grabbing;
 }
 
+/* Rend le pointeur de la souris cliquable (main) sur les étoiles */
+.star {
+  cursor: pointer; 
+  /* Assure une transition douce pour le zoom */
+  transition: transform 0.3s ease-in-out; 
+}
+
+/* Applique un zoom (grossissement de 10%) au survol (hover) */
+.star:hover {
+  transform: scale(1.4);
+  /* Optionnel : ajoute une ombre légère pour faire "sortir" l'étoile */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.8));
+}
