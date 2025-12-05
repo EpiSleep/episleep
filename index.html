@@ -1,96 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NIRD Quest Hub - Home</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>NIRD Quest Hub - Home</title>
+    <link rel="stylesheet" href="assets/css/style.css"/>
 </head>
 <body class="scanlines">
-  <div class="page-shell grid-overlay">
+<div class="page-shell grid-overlay">
     <main class="hero card neon-border">
-      <div class="logo">NIRD Quest Hub</div>
-      <h1>Join the computing revolution, and discover how to take back control of your devices!</h1>
-      <div class="actions main-actions">
-        <a class="btn" onclick="launchGame()" id="openGames">Play</a>
-        <button class="btn secondary" id="openSettings">Settings</button>
-        <button class="btn secondary" id="openCredits">Credits</button>
-      </div>
+        <div class="logo">NIRD Quest Hub</div>
+        <h1>Join the computing revolution, and discover how to take back control of your devices!</h1>
+        <div class="actions main-actions">
+            <a class="btn" onclick="launchGame()" id="openGames">Play</a>
+            <button class="btn secondary" id="openSettings">Settings</button>
+            <button class="btn secondary" id="openCredits">Credits</button>
+        </div>
     </main>
-  </div>
+</div>
 
 <div class="modal-backdrop" id="settingsModal">
     <div class="modal">
-      <header>
-        <h3>Quick settings</h3>
-        <button class="close-btn" aria-label="Close">✕</button>
-      </header>
-      <div class="body">
-        <p>Ajustez vos préférences de jeu ici.</p>
-        <div class="form-grid">
-          <div class="form-control">
-            <label for="audio">Volume Principal</label>
-            <input id="audio" type="range" min="0" max="100" value="80" />
-          </div>
-        </div>
+        <header>
+            <h3>Quick settings</h3>
+            <button class="close-btn" aria-label="Close">✕</button>
+        </header>
+        <div class="body">
+            <p>Ajustez vos préférences de jeu ici.</p>
+            <div class="form-grid">
+                <div class="form-control">
+                    <label for="audio">Volume Principal</label>
+                    <input id="audio" type="range" min="0" max="100" value="80"/>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-      <div class="body">Review the mission details and press Play when you are ready.</div>
-      <div class="actions">
-        <a class="btn play-btn" href="#">Play</a>
-      </div>
-    </div>
-  </div>
-  <div class="modal-backdrop" id="creditsModal">
+<div class="body">Review the mission details and press Play when you are ready.</div>
+<div class="actions">
+    <a class="btn play-btn" href="#">Play</a>
+</div>
+<div class="modal-backdrop" id="creditsModal">
     <div class="modal">
-      <header>
-        <h3>Credits</h3>
-        <button class="close-btn" aria-label="Close">✕</button>
-      </header>
-      <div class="body">
-        <p>Hub built to prepare challenges for Nuit de l'Info.</p>
+        <header>
+            <h3>Credits</h3>
+            <button class="close-btn" aria-label="Close">✕</button>
+        </header>
+        <div class="body">
+            <p>Hub built to prepare challenges for Nuit de l'Info.</p>
 
-        <h4 class="section-title">Team</h4>
-        <ul>
-          <li>Ehrhardt Victor</li>
-          <li>Roullin Léon</li>
-          <li>Grollemund Flavie</li>
-          <li>Muller Antoine</li>
-          <li>Scheliquet Antonin</li>
-          <li>Bauer Chloé</li>
-          <li>Zurbach Daniel</li>
-          <li>Althaus Tom</li>
-        </ul>
+            <h4 class="section-title">Team</h4>
+            <ul>
+                <li>Ehrhardt Victor</li>
+                <li>Roullin Léon</li>
+                <li>Grollemund Flavie</li>
+                <li>Muller Antoine</li>
+                <li>Scheliquet Antonin</li>
+                <li>Bauer Chloé</li>
+                <li>Zurbach Daniel</li>
+                <li>Althaus Tom</li>
+            </ul>
 
-        <h4 class="section-title">Links & License</h4>
-        <ul>
-          <li><a href="https://github.com/EpiSleep/episleep" target="_blank" rel="noopener">EpiSleep repository</a></li>
-          <li>Licensed under the <a href="https://mit-license.org/" target="_blank" rel="noopener">Apache License 2.0</a></li>
-        </ul>
+            <h4 class="section-title">Links & License</h4>
+            <ul>
+                <li><a href="https://github.com/EpiSleep/episleep" target="_blank" rel="noopener">EpiSleep
+                    repository</a></li>
+                <li>Licensed under the <a href="https://mit-license.org/" target="_blank" rel="noopener">Apache License
+                    2.0</a></li>
+            </ul>
 
-        <h4 class="section-title">Challenges</h4>
-        <ul>
-          <li><a href="https://www.nuitdelinfo.com/inscription/defis/174" class="challenge-link">Défi de la nuit 2025</a></li>
-          <li><a href="https://www.nuitdelinfo.com/inscription/defis/444" class="challenge-link">L'ergonomie : simplifier pour mieux vivre</a></li>
-          <li><a href="https://www.nuitdelinfo.com/inscription/defis/470" class="challenge-link">Femmes et Informatique</a></li>
-          <li><a href="https://www.nuitdelinfo.com/inscription/defis/485" class="challenge-link">Oh les beaux boutons</a></li>
-          <li><a href="https://www.nuitdelinfo.com/inscription/defis/497" class="challenge-link">🏆 Devenez le CTO de Votre Santé Posturale</a></li>
-          <li><a href="https://www.nuitdelinfo.com/inscription/defis/505" class="challenge-link">CVE Explorer — Visual Threat Intelligence Challenge</a></li>
-        </ul>
+            <h4 class="section-title">Challenges</h4>
+            <ul>
+                <li><a href="https://www.nuitdelinfo.com/inscription/defis/174" class="challenge-link">Défi de la nuit
+                    2025</a></li>
+                <li><a href="https://www.nuitdelinfo.com/inscription/defis/444" class="challenge-link">L'ergonomie :
+                    simplifier pour mieux vivre</a></li>
+                <li><a href="https://www.nuitdelinfo.com/inscription/defis/470" class="challenge-link">Femmes et
+                    Informatique</a></li>
+                <li><a href="https://www.nuitdelinfo.com/inscription/defis/485" class="challenge-link">Oh les beaux
+                    boutons</a></li>
+                <li><a href="https://www.nuitdelinfo.com/inscription/defis/497" class="challenge-link">🏆 Devenez le CTO
+                    de Votre Santé Posturale</a></li>
+                <li><a href="https://www.nuitdelinfo.com/inscription/defis/505" class="challenge-link">CVE Explorer —
+                    Visual Threat Intelligence Challenge</a></li>
+            </ul>
 
-        <h4 class="section-title">Sources autres</h4>
-        <ul>
-          <li><a href="https://opengameart.org/" class="challenge-link" title="crt icons">Musics from opengameart</a></li>
-          <li><a title="crt icons">Assets by ourselves</a></li>
-        </ul>
-        <p class="muted">Tech: HTML / CSS / Vanilla JS</p>
-      </div>
+            <h4 class="section-title">Sources autres</h4>
+            <ul>
+                <li><a href="https://opengameart.org/" class="challenge-link" title="crt icons">Musics from
+                    opengameart</a></li>
+                <li><a title="crt icons">Assets by ourselves</a></li>
+            </ul>
+            <p class="muted">Tech: HTML / CSS / Vanilla JS</p>
+        </div>
     </div>
-  </div>
+</div>
 </div>
 
-  <script src="assets/js/main.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
