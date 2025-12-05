@@ -58,3 +58,56 @@
 .modal.is-review img:not(.review-mascot img) {
     display: none;
 }
+
+/* Fichier: assets/css/qcm-modal.css */
+
+/* ... (Styles pour QCM et .review-profile-details inchangés) ... */
+
+/* --- Mise en page de la Revue Finale (Profil + Mascotte + Jeu) --- */
+
+.review-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.review-profile-details {
+    width: 60%; /* Reste le profil */
+}
+
+/* CE CONTENEUR GÈRE LA DISPOSITION CÔTE À CÔTE */
+.review-mascot-and-game {
+    width: 35%; 
+    text-align: center;
+    
+    /* RÈGLE CLÉ : Force l'alignement horizontal (côte à côte) */
+    display: flex;
+    flex-direction: row; /* Force la disposition en ligne */
+    justify-content: space-between; /* Pour séparer les deux éléments */
+    gap: 10px; /* Petit espace entre la mascotte et le mini-jeu */
+}
+
+/* 1. Mascotte (Moins de place) */
+.review-mascot {
+    width: 40%; /* La mascotte prend 40% de la colonne de droite */
+}
+
+.review-mascot img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); 
+}
+
+/* 2. Conteneur du Mini-Jeu (Plus de place) */
+.review-minigame-placeholder {
+    width: 60%; /* Le placeholder du jeu prend 60% de la colonne de droite */
+    padding: 10px;
+    border: 1px dashed var(--muted-color); 
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* ... (Reste des styles inchangés) ... */

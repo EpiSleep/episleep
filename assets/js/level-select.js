@@ -176,8 +176,7 @@ function renderModal(content) {
         image.alt = content.title;
 
         actions.innerHTML = `
-            <a class="btn play-btn" href="${content.link}">${content.cta || 'Play'}</a>
-            <button class="btn secondary close-btn" onclick="closeModal()">Maybe later</button>
+
         `;
         image.style.display = 'block';
     }
@@ -193,24 +192,32 @@ function renderModal(content) {
             heading.textContent = `Synthèse du Profil Sportif`;
 
             // Utilisation de la nouvelle structure CSS (review-layout)
+  // Utilisation de la structure de revue (review-layout)
             body.innerHTML = `
                 <div class="review-layout">
                     <div class="review-profile-details">
                         <h4>${finalProfile.title}</h4>
                         <p>${finalProfile.description}</p>
                     </div>
-                    <div class="review-mascot">
-                        <img src="${MASCOT_URL}" alt="Mascotte Decathlon">
+                    
+                    <div class="review-mascot-and-game">
+                        
+                        <div class="review-mascot">
+                            <img src="${MASCOT_URL}" alt="Mascotte Decathlon">
+                        </div>
+                        
+                        <div class="review-minigame-placeholder" id="minigamePlaceholder">
+                            <p>Préparez-vous à l'échauffement !</p>
+                            </div>
+                        
                     </div>
                 </div>
-            `; 
+            `;
             
             // L'image par défaut de la modale est masquée par le CSS .is-review
             
             // Afficher le bouton "Play" avec le lien du profil
             actions.innerHTML = `
-                <a class="btn play-btn" href="${finalProfile.link}">Commencer la mission</a>
-                <button class="btn secondary close-btn" onclick="closeModal()">Maybe later</button>
             `;
 
         } 
@@ -234,7 +241,7 @@ function renderModal(content) {
             image.style.display = 'block';
             image.src = content.image;
 
-            actions.innerHTML = `<button class="btn secondary close-btn" onclick="closeModal()">Annuler le QCM</button>`;
+            actions.innerHTML = ``;
         }
     }
 
