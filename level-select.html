@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="assets/css/level-select.css" />
 </head>
 <body class="scanlines">
+  <div id="backbar">
+    <div id="progress">
+      <p id="progress_label"></p>
+    </div>
+  </div>
   <div class="page-shell grid-overlay">
     <div class="wave-bg"></div>
     <div class="game-header game-header--wide">
@@ -17,7 +22,7 @@
       <div class="actions" id="closeBar">
         <a class="btn icon-btn" id = "closeGame" href="index.html" aria-label="Close level selection">✕</a>
       </div>
-      <div class="stage-wrapper">
+      <div class="stage-wrapper" id="gameWindow">
         <div class="stage-track">
           <div class="track-grid"></div>
           <div class="stage-node" data-level-id="femmes-info" style="top: 34%; left: 8%;">
