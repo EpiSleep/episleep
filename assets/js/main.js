@@ -13,8 +13,29 @@ function setCookie(name, value, days) {
   document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Lax";
 }
 
+function getCookie(name) {
+  const nameEQ = name + "=";
+  // Découpe la chaîne document.cookie en un tableau de cookies.
+  const ca = document.cookie.split(';');
+
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    // Supprime les espaces blancs au début
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1, c.length);
+    }
+    // Si on trouve le nom du cookie au début de la chaîne...
+    if (c.indexOf(nameEQ) === 0) {
+      // ... retourne la valeur (tout ce qui suit le '=').
+      return c.substring(nameEQ.length, c.length);
+    }
+  }
+  return null; // Retourne null si le cookie n'est pas trouvé
+}
+
 function launchGame(){
-  setCookie('score', 0, 2);
+  setCookie('score', 1, 2);
+  console.log(getCookie('score'))
   window.location.replace("level-select.html");
 }
 

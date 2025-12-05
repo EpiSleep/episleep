@@ -511,7 +511,7 @@ a {
 #progress{
   height: 100%;
   background: linear-gradient(to right, #1e66ae 0%, #dd5fd4 25%, #f99fb0 50%, #fed464 75%);
-  width: 25%;
+  width: 0%;
 }
 
 @media (max-width: 720px) {
