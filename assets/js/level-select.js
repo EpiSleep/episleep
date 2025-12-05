@@ -180,10 +180,10 @@ function generateProfile() {
   });
 
   const profileContent = {
-    A: { title: "Profil A : Découverte & Loisir", description: "Vous visez le bien-être et la régularité. Ce niveau Decathlon se concentre sur les bases de la programmation pour la santé et le bien-être.", link: 'games/decathlon/index.html?profile=A' },
-    B: { title: "Profil B : Intermédiaire & Forme", description: "Vous êtes régulier et cherchez à améliorer votre endurance. Ce niveau Decathlon vous met au défi d'optimiser des routines sportives via des algorithmes.", link: 'games/decathlon/index.html?profile=B' },
-    C: { title: "Profil C : Avancé & Performance", description: "Votre objectif est la force et la performance spécifique. Ce niveau Decathlon nécessite une analyse approfondie des données de performance et de gain de force.", link: 'games/decathlon/index.html?profile=C' },
-    D: { title: "Profil D : Athlète & Compétition", description: "Votre engagement est total. Ce niveau Decathlon vous confronte à des défis de micro-optimisation et de gestion de gros jeux de données sportifs.", link: 'games/decathlon/index.html?profile=D' }
+    A: { title: "Profile A: Exploration & Recreation", description: "You are aiming for well-being and regularity. This Decathlon level focuses on the basics of programming for health and well-being.", link: 'games/decathlon/index.html?profile=A' },
+    B: { title: "Profile B: Intermediate & Fitness", description: "You are consistent and looking to improve your endurance. This Decathlon level challenges you to optimize sports routines through algorithms.", link: 'games/decathlon/index.html?profile=B' },
+    C: { title: "Profile C: Advanced & Performance", description: "Your goal is strength and specific performance. This Decathlon level requires an in-depth analysis of performance and strength gain data.", link: 'games/decathlon/index.html?profile=C' },
+    D: { title: "Profile D: Athlete & Competition", description: "Your commitment is absolute. This Decathlon level confronts you with challenges in micro-optimization and the management of large sports datasets.", link: 'games/decathlon/index.html?profile=D' }
   };
 
   let dominantProfile = "B";
@@ -273,7 +273,7 @@ function renderDefaultModal(content) {
         video.style.display = 'block';
         video.src = content.video;
 
-        playButtonHtml = `<button class="btn play-btn video-toggle">Lecture Vidéo ▶</button>`;
+        playButtonHtml = `<button class="btn play-btn video-toggle">Play Video ▶</button>`;
     } else if (video) {
 
         video.style.display = 'none';
@@ -295,7 +295,7 @@ function renderDefaultModal(content) {
                 videoBtn.textContent = "Pause ⏸";
             } else {
                 video.pause();
-                videoBtn.textContent = "Lecture Vidéo ▶";
+                videoBtn.textContent = "Play Video ▶";
             }
         });
     }
@@ -350,7 +350,7 @@ function renderModal(content) {
         body.innerHTML = questionHTML;
         image.src = content.image; 
 
-        actions.innerHTML = `<button class="btn secondary close-btn" onclick="closeModal()">Annuler le QCM</button>`;
+        actions.innerHTML = `<button class="btn secondary close-btn" onclick="closeModal()">Cancel MCQ</button>`;
     }
 
     if (modal.parentElement) {
