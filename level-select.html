@@ -1,70 +1,61 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Choix du Niveau</title>
+  <title>Level Select</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/level-select.css" />
 </head>
 <body class="scanlines">
   <div class="page-shell grid-overlay">
     <div class="wave-bg"></div>
-    <div class="game-header" style="width: 100%; max-width: 1200px;">
-      <div class="logo">Sélection</div>
-      <div class="actions">
-        <a class="btn secondary" href="">Retour</a>
-      </div>
+    <div class="game-header game-header--wide">
+      <div class="logo">Level Select</div>
     </div>
-
     <section class="level-stage card neon-border">
-      <div class="badge-row">
-        <span class="pill"><span class="glow-dot"></span>Scroll horizontal</span>
-        <span class="pill"><span class="glow-dot"></span>Place tes boutons sur la map</span>
+      <div class="actions" id="closeBar">
+        <a class="btn icon-btn" id = "closeGame" href="index.html" aria-label="Close level selection">✕</a>
       </div>
       <div class="stage-wrapper">
         <div class="stage-track">
           <div class="track-grid"></div>
-          <div class="stage-node" style="top: 34%; left: 8%;">
-            <div class="node-pin"></div>
-            <div class="node-label">Femmes & Info</div>
-            <button class="node-btn" data-level-id="femmes-info">Approcher</button>
+          <div class="stage-node" data-level-id="femmes-info" style="top: 34%; left: 8%;">
+            <div class="node-label">Women &amp; IT</div>
+            <button class="node-btn"></button>
           </div>
-          <div class="stage-node" style="top: 70%; left: 30%;">
-            <div class="node-pin"></div>
-            <div class="node-label">Décathlon</div>
-            <button class="node-btn" data-level-id="decathlon">Approcher</button>
+          <div class="stage-node" data-level-id="decathlon" style="top: 70%; left: 30%;">
+            <div class="node-label">Decathlon</div>
+            <button class="node-btn"></button>
           </div>
-          <div class="stage-node" style="top: 26%; left: 56%;">
-            <div class="node-pin"></div>
+          <div class="stage-node" data-level-id="cve-explorer" style="top: 26%; left: 56%;">
             <div class="node-label">CVE Explorer</div>
-            <button class="node-btn" data-level-id="cve-explorer">Approcher</button>
+            <button class="node-btn"></button>
           </div>
-          <div class="stage-node" style="top: 72%; left: 82%;">
-            <div class="node-pin"></div>
-            <div class="node-label">Ergonomie</div>
-            <button class="node-btn" data-level-id="ergonomie">Approcher</button>
+          <div class="stage-node" data-level-id="ergonomie" style="top: 72%; left: 82%;">
+            <div class="node-label">Ergonomics</div>
+            <button class="node-btn"></button>
           </div>
         </div>
       </div>
-      <p class="body" style="margin-top: 16px; color: var(--muted);">Glisse horizontalement (shift + molette, trackpad ou scrollbar) pour parcourir la map.</p>
+      <p class="body" style="margin-top: 16px; color: var(--muted);">Hold the left mouse button and drag to explore the map.</p>
     </section>
   </div>
 
   <div class="modal-backdrop">
     <div class="modal" id="levelModal">
       <header>
-        <h3>Level</h3>
-        <button class="close-btn" aria-label="Fermer">✕</button>
+        <h3>Mission Briefing</h3>
+        <button class="close-btn" aria-label="Close modal" >✕</button>
       </header>
-      <img src="" alt="" loading="lazy" />
-      <div class="body">Description du niveau.</div>
+      <img src="/assets/img/placeholder.png" alt="Image du niveau" loading="lazy" />
+      <div class="body">Review the mission details and press Play when you are ready.</div>
       <div class="actions">
-        <a class="btn play-btn" href="#">Jouer</a>
-        <button class="btn secondary close-btn">Plus tard</button>
+        <a class="btn play-btn" href="#">Play</a>
+        <button class="btn secondary close-btn">Maybe later</button>
       </div>
     </div>
   </div>
-
-  <script src="/assets/js/level-select.js"></script>
+  <script src="assets/js/level-select.js"></script>
 </body>
 </html>
