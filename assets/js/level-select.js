@@ -4,7 +4,7 @@ const levelData = [
     title: 'Women & IT',
     description: 'A narrative adventure highlighting the heroines of computing. Videos, quizzes, and interactive archives await.',
     cta: 'Discover the challenge',
-    image: 'https://dummyimage.com/900x400/2b3a67/ffffff&text=Women+%26+IT',
+    image: 'assets/images/femme.png',
     // EXEMPLE: Ajoutez votre chemin vidéo ici. Si vide, l'image s'affiche.
     video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
     link: '/games/femmes-info/index.html'
@@ -37,47 +37,59 @@ const levelData = [
 
 function renderModal(content) {
   const modal = document.querySelector('#levelModal');
-  if (!modal) {
-    console.warn('Modal element (#levelModal) not found.');
-    return;
-  }
+  if (!modal) return;
+
   const body = modal.querySelector('.body');
   const heading = modal.querySelector('h3');
   const image = modal.querySelector('img');
-  // MODIFICATION: Sélection de la vidéo
   const video = modal.querySelector('video');
-  const playBtn = modal.querySelector('.play-btn');
-
-  if (!heading || !body || !image || !playBtn) {
-    console.warn('Elements missing in modal.');
-    return;
-  }
+  
+  const oldPlayBtn = modal.querySelector('.play-btn');
+  if (!oldPlayBtn) return;
+  const playBtn = oldPlayBtn.cloneNode(true);
+  oldPlayBtn.parentNode.replaceChild(playBtn, oldPlayBtn);
 
   heading.textContent = content.title;
   body.textContent = content.description;
-  playBtn.href = content.link;
 
-  // MODIFICATION: Logique Vidéo vs Image
+  // --- PARTIE IMAGE : On l'affiche TOUJOURS ---
+  if (image) {
+      image.src = content.image;
+      image.alt = content.title;
+      image.style.display = 'block'; // On force l'affichage
+      // Astuce : si l'image est trop collée à la vidéo, ajoutez du margin dans le CSS
+  }
+
+  // --- PARTIE VIDÉO : On l'affiche SI elle existe ---
   if (content.video && video) {
-    image.style.display = 'none';
     video.style.display = 'block';
     video.src = content.video;
-    // video.play(); // Décommentez pour lecture auto
+    
+    playBtn.textContent = "Lecture Vidéo ▶";
+
+    playBtn.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      if (video.paused) {
+        video.play();
+        playBtn.textContent = "Pause ⏸"; 
+      } else {
+        video.pause();
+        playBtn.textContent = "Lecture Vidéo ▶";
+      }
+    });
+
   } else {
+    // S'il n'y a PAS de vidéo
     if (video) {
       video.style.display = 'none';
       video.pause();
       video.src = "";
     }
-    image.style.display = 'block';
-    image.src = content.image;
-    image.alt = content.title;
+    playBtn.textContent = "Jouer";
   }
 
   if (modal.parentElement) {
     modal.parentElement.classList.add('active');
-  } else {
-    console.warn('Modal parent element not found.');
   }
 }
 
