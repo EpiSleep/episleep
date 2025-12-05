@@ -11,44 +11,40 @@ const levelData = [
     cta: 'Discover the challenge',
     image: 'assets/images/femme.png',
     video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
-    link: '/games/femmes-info/index.html'
+    link: 'games/femmes-info/index.html'
   },
   {
-    id: "decathlon",
-    title: "Decathlon Data Rush",
-    description:
-      "Sporty mini-games fused with micro-optimization challenges. Get your algorithms and sneakers ready!",
-    cta: "Load the map",
-    image: "https://dummyimage.com/900x400/173f2d/ffffff&text=Decathlon",
-    link: "/games/decathlon/index.html",
+    id: 'decathlon',
+    title: 'Decathlon Data Rush',
+    description: 'Sporty mini-games fused with micro-optimization challenges. Get your algorithms and sneakers ready!',
+    cta: 'Load the map',
+    image: 'https://dummyimage.com/900x400/173f2d/ffffff&text=Decathlon',
+    link: 'games/decathlon/index.html'
   },
   {
-    id: "cve-explorer",
-    title: "CVE Explorer",
-    description:
-      "An arcade scanner to explore and visualize CVE vulnerabilities. Input, parsing, display — all in pixel-art.",
-    cta: "Launch scanner",
-    image: "https://dummyimage.com/900x400/1f243d/ffffff&text=CVE+Explorer",
-    link: "games/cve-explorer/fish.html",
+    id: 'cve-explorer',
+    title: 'CVE Explorer',
+    description: 'An arcade scanner to explore and visualize CVE vulnerabilities. Input, parsing, display — all in pixel-art.',
+    cta: 'Launch scanner',
+    image: 'https://dummyimage.com/900x400/1f243d/ffffff&text=CVE+Explorer',
+    link: 'games/cve-explorer/index.html'
   },
   {
-    id: "linux-install",
-    title: "Linux Installation",
-    description:
-      "Learn the correct order of steps to install Linux. Drag and drop the steps to arrange them correctly and master the installation process!",
-    cta: "Start installation",
-    image: "https://dummyimage.com/900x400/1a1a2e/00ff00&text=Linux+Install",
-    link: "games/linux-install/index.html",
+    id: 'linux-install',
+    title: 'Linux Installation',
+    description: 'Learn the correct order of steps to install Linux. Drag and drop the steps to arrange them correctly and master the installation process!',
+    cta: 'Start installation',
+    image: 'https://dummyimage.com/900x400/1a1a2e/00ff00&text=Linux+Install',
+    link: 'games/linux-install/index.html'
   },
   {
-    id: "ergonomie",
-    title: "Dark Pattern Lab",
-    description:
-      "Experiment with (and fix) devious interfaces. An ergonomics lab to put users back at the center.",
-    cta: "Enter the lab",
-    image: "https://dummyimage.com/900x400/3b1b2e/ffffff&text=Ergonomics",
-    link: "/games/ergonomie-dark-pattern/index.html",
-  },
+    id: 'ergonomics',
+    title: 'Dark Pattern Lab',
+    description: 'Experience the world\'s most frustrating form! Validate a simple date through various complex steps. A perfect example of terrible UX design.',
+    cta: 'Start the challenge',
+    image: 'https://dummyimage.com/900x400/3b1b2e/ffffff&text=Dark+Pattern+Lab',
+    link: 'games/ergonomics/index.html'
+  }
 ];
 
 
@@ -184,14 +180,13 @@ function generateProfile() {
     counts[response]++;
   });
 
-    const profileContent = {
-        A: { title: "Profil A : Découverte & Loisir", description: "Vous visez le bien-être et la régularité. Ce niveau Decathlon se concentre sur les bases de la programmation pour la santé et le bien-être.", link: 'games/decathlon/index.html?profile=A' },
-        B: { title: "Profil B : Intermédiaire & Forme", description: "Vous êtes régulier et cherchez à améliorer votre endurance. Ce niveau Decathlon vous met au défi d'optimiser des routines sportives via des algorithmes.", link: 'games/decathlon/index.html?profile=B' },
-        C: { title: "Profil C : Avancé & Performance", description: "Votre objectif est la force et la performance spécifique. Ce niveau Decathlon nécessite une analyse approfondie des données de performance et de gain de force.", link: 'games/decathlon/index.html?profile=C' },
-        D: { title: "Profil D : Athlète & Compétition", description: "Votre engagement est total. Ce niveau Decathlon vous confronte à des défis de micro-optimisation et de gestion de gros jeux de données sportifs.", link: 'games/decathlon/index.html?profile=D' }
-    };
-    
-    return profileContent[dominantProfile];
+  const profileContent = {
+    A: { title: "Profil A : Découverte & Loisir", description: "Vous visez le bien-être et la régularité. Ce niveau Decathlon se concentre sur les bases de la programmation pour la santé et le bien-être.", link: 'games/decathlon/index.html?profile=A' },
+    B: { title: "Profil B : Intermédiaire & Forme", description: "Vous êtes régulier et cherchez à améliorer votre endurance. Ce niveau Decathlon vous met au défi d'optimiser des routines sportives via des algorithmes.", link: 'games/decathlon/index.html?profile=B' },
+    C: { title: "Profil C : Avancé & Performance", description: "Votre objectif est la force et la performance spécifique. Ce niveau Decathlon nécessite une analyse approfondie des données de performance et de gain de force.", link: 'games/decathlon/index.html?profile=C' },
+    D: { title: "Profil D : Athlète & Compétition", description: "Votre engagement est total. Ce niveau Decathlon vous confronte à des défis de micro-optimisation et de gestion de gros jeux de données sportifs.", link: 'games/decathlon/index.html?profile=D' }
+  };
+
   let dominantProfile = "B";
 
   if (counts.D > counts.C && counts.D > counts.B && counts.D > counts.A) {
@@ -219,7 +214,7 @@ function nextQuestion(answer) {
     
     currentQuestionIndex++; 
     
-   
+
     const decathlonContent = levelData.find(item => item.id === 'decathlon');
     if (decathlonContent) {
         renderModal(decathlonContent);
@@ -243,11 +238,11 @@ function closeModal() {
   if (modal && modal.parentElement) {
     modal.parentElement.classList.remove('active');
     
-   
+
     const video = modal.querySelector('video');
     if(video) {
         video.pause();
-        video.src = ""; 
+        video.src = "";
     }
   }
 }
@@ -271,17 +266,17 @@ function renderDefaultModal(content) {
         image.style.display = 'block';
     }
 
-    
+
     let playButtonHtml = `<a class="btn play-btn" href="${content.link}">${content.cta || 'Play'}</a>`;
     
-   
+
     if (content.video && video) {
         video.style.display = 'block';
         video.src = content.video;
-        
+
         playButtonHtml = `<button class="btn play-btn video-toggle">Lecture Vidéo ▶</button>`;
     } else if (video) {
-        
+
         video.style.display = 'none';
         video.pause();
     }
@@ -291,7 +286,7 @@ function renderDefaultModal(content) {
 
     `;
 
-   
+
     if (content.video && video) {
         const videoBtn = actions.querySelector('.video-toggle');
         videoBtn.addEventListener('click', (e) => {
@@ -322,16 +317,16 @@ function renderModal(content) {
     const actions = modal.querySelector('.actions');
     const video = modal.querySelector('video');
 
-    
+
     if (content.id !== 'decathlon') {
         renderDefaultModal(content);
         return;
     }
 
-   
+
     if(video) video.style.display = 'none';
 
-    
+
     if (currentQuestionIndex >= qcmData.length) {
         const finalProfile = generateProfile();
         heading.textContent = `Mission Briefing: ${finalProfile.title}`;
@@ -343,13 +338,7 @@ function renderModal(content) {
             <a class="btn play-btn" href="${finalProfile.link}">Start the mission</a>
             <button class="btn secondary close-btn" onclick="closeModal()">Maybe later</button>
         `;
-  } else {
-    // Afficher la question
-    const currentQ = qcmData[currentQuestionIndex];
-    heading.textContent = `QCM Decathlon (${currentQ.id}/${qcmData.length})`;
-
     } else {
-        
         const currentQ = qcmData[currentQuestionIndex];
         heading.textContent = `QCM Decathlon (${currentQ.id}/${qcmData.length})`;
         
@@ -364,7 +353,6 @@ function renderModal(content) {
 
         actions.innerHTML = `<button class="btn secondary close-btn" onclick="closeModal()">Annuler le QCM</button>`;
     }
-    questionHTML += "</ul>";
 
     if (modal.parentElement) {
         modal.parentElement.classList.add('active');
@@ -374,7 +362,7 @@ function renderModal(content) {
         attachQCMListeners();
     }
     
-    
+
     document.querySelectorAll('.close-btn').forEach((btn) => btn.onclick = closeModal);
 }
 
@@ -384,7 +372,6 @@ function bindNodes() {
             const levelId = node.dataset.levelId;
             const content = levelData.find((item) => item.id === levelId);
 
-            
             if (levelId === 'decathlon') {
                 decathlonResponses = {};
                 currentQuestionIndex = 0;
@@ -395,7 +382,6 @@ function bindNodes() {
             }
         });
     });
-  });
 }
 
 function initDragToPan() {
@@ -434,7 +420,7 @@ function initDragToPan() {
     stageWrapper.scrollTop = scrollTop - (y - startY);
   });
   
- 
+
   let touchStart = null;
   stageWrapper.addEventListener("touchstart", (e) => {
     if (e.touches.length !== 1) return;
@@ -504,18 +490,6 @@ function getCookie(name) {
 const element = document.getElementById('gameWindow');
 const progressbar = document.getElementById("progress");
 
-if (element && progressbar) {
-  function handleMouseOver() {
-    const score = getCookie("score") || 0;
-    progressbar.style.width = 20 * score + "%";
-  }
-  function handleMouseOut() {
-    const score = getCookie("score") || 0;
-    progressbar.style.width = 20 * score + "%";
-  }
-  element.addEventListener("mouseover", handleMouseOver);
-  element.addEventListener("mouseout", handleMouseOut);
-}
 if(element && progressbar) {
     function handleMouseOver() {
       const score = getCookie('score') || 0; 
@@ -525,19 +499,19 @@ if(element && progressbar) {
       const cve = document.getElementById('cve');
       const ergo = document.getElementById('ergo');
       const linux = document.getElementById('linux');
-      if (getCookie('woman') == "1"){
+      if (getCookie('woman') === "1"){
         woman.src = "assets/images/medals/femme.png";
       }
-      if (getCookie('decat') == "1"){
+      if (getCookie('decat') === "1"){
         decat.src = "assets/images/medals/decathlon.png";
       }
-      if (getCookie('cve') == "1"){
+      if (getCookie('cve') === "1"){
         cve.src = "assets/images/medals/peche.png";
       }
-      if (getCookie('ergo') == "1"){
+      if (getCookie('ergo') === "1"){
         ergo.src = "assets/images/medals/brain.png";
       }
-      if (getCookie('linux') == "1"){
+      if (getCookie('linux') === "1"){
         linux.src = "assets/images/medals/linux.png";
       }
     }
@@ -549,19 +523,19 @@ if(element && progressbar) {
       const cve = document.getElementById('cve');
       const ergo = document.getElementById('ergo');
       const linux = document.getElementById('linux');
-      if (getCookie('woman') == "1"){
+      if (getCookie('woman') === "1"){
         woman.src = "assets/images/medals/femme.png";
       }
-      if (getCookie('decat') == "1"){
+      if (getCookie('decat') === "1"){
         decat.src = "assets/images/medals/decathlon.png";
       }
-      if (getCookie('cve') == "1"){
+      if (getCookie('cve') === "1"){
         cve.src = "assets/images/medals/peche.png";
       }
-      if (getCookie('ergo') == "1"){
+      if (getCookie('ergo') === "1"){
         ergo.src = "assets/images/medals/brain.png";
       }
-      if (getCookie('linux') == "1"){
+      if (getCookie('linux') === "1"){
         linux.src = "assets/images/medals/linux.png";
       }
     }
