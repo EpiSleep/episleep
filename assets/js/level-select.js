@@ -9,7 +9,13 @@ const levelData = [
     title: 'Women & IT',
     description: 'A narrative adventure highlighting the heroines of computing. Videos, quizzes, and interactive archives await.',
     cta: 'Discover the challenge',
+<<<<<<< HEAD
     image: 'https://dummyimage.com/900x400/2b3a67/ffffff&text=Women+%26+IT',
+=======
+    image: 'assets/images/femme.png',
+    // EXEMPLE: Ajoutez votre chemin vidéo ici. Si vide, l'image s'affiche.
+    video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
+>>>>>>> main
     link: '/games/femmes-info/index.html'
   },
   {
@@ -38,6 +44,7 @@ const levelData = [
   }
 ];
 
+<<<<<<< HEAD
 // Variable pour stocker les réponses du QCM
 let decathlonResponses = {};
 let currentQuestionIndex = 0;
@@ -159,6 +166,65 @@ const qcmData = [
 // ====================================================================
 // 2. FONCTIONS DE LOGIQUE QCM ET PROFIL
 // ====================================================================
+=======
+function renderModal(content) {
+  const modal = document.querySelector('#levelModal');
+  if (!modal) return;
+
+  const body = modal.querySelector('.body');
+  const heading = modal.querySelector('h3');
+  const image = modal.querySelector('img');
+  const video = modal.querySelector('video');
+  
+  const oldPlayBtn = modal.querySelector('.play-btn');
+  if (!oldPlayBtn) return;
+  const playBtn = oldPlayBtn.cloneNode(true);
+  oldPlayBtn.parentNode.replaceChild(playBtn, oldPlayBtn);
+
+  heading.textContent = content.title;
+  body.textContent = content.description;
+
+  // --- PARTIE IMAGE : On l'affiche TOUJOURS ---
+  if (image) {
+      image.src = content.image;
+      image.alt = content.title;
+      image.style.display = 'block'; // On force l'affichage
+      // Astuce : si l'image est trop collée à la vidéo, ajoutez du margin dans le CSS
+  }
+
+  // --- PARTIE VIDÉO : On l'affiche SI elle existe ---
+  if (content.video && video) {
+    video.style.display = 'block';
+    video.src = content.video;
+    
+    playBtn.textContent = "Lecture Vidéo ▶";
+
+    playBtn.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      if (video.paused) {
+        video.play();
+        playBtn.textContent = "Pause ⏸"; 
+      } else {
+        video.pause();
+        playBtn.textContent = "Lecture Vidéo ▶";
+      }
+    });
+
+  } else {
+    // S'il n'y a PAS de vidéo
+    if (video) {
+      video.style.display = 'none';
+      video.pause();
+      video.src = "";
+    }
+    playBtn.textContent = "Jouer";
+  }
+
+  if (modal.parentElement) {
+    modal.parentElement.classList.add('active');
+  }
+}
+>>>>>>> main
 
 function generateProfile() {
     let counts = { A: 0, B: 0, C: 0, D: 0 };
@@ -412,3 +478,51 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', closeModal)
   );
 });
+
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    // Calcule la date d'expiration
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  // Crée la chaîne de cookie. Le "path=/" rend le cookie accessible sur tout le site.
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Lax";
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  // Découpe la chaîne document.cookie en un tableau de cookies.
+  const ca = document.cookie.split(';');
+
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    // Supprime les espaces blancs au début
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1, c.length);
+    }
+    // Si on trouve le nom du cookie au début de la chaîne...
+    if (c.indexOf(nameEQ) === 0) {
+      // ... retourne la valeur (tout ce qui suit le '=').
+      return c.substring(nameEQ.length, c.length);
+    }
+  }
+  return null; // Retourne null si le cookie n'est pas trouvé
+}
+
+const element = document.getElementById('gameWindow');
+const progressbar = document.getElementById("progress");
+// 2. Définir la fonction de vérification (entrée)
+function handleMouseOver() {
+  progressbar.style.width = (25 * getCookie('score'))+'%';
+}
+
+// 3. Définir la fonction de vérification (sortie)
+function handleMouseOut() {
+  progressbar.style.width = (25 * getCookie('score'))+'%';
+}
+
+// 4. Attacher les écouteurs d'événements
+element.addEventListener('mouseover', handleMouseOver);
+element.addEventListener('mouseout', handleMouseOut);

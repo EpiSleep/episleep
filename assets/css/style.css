@@ -37,7 +37,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px 24px;
+  padding: 24px;
   position: relative;
   overflow: hidden;
 }
@@ -73,11 +73,11 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   box-shadow: var(--shadow);
-  padding: 24px;
+  padding: 16px;
 }
 
 .logo {
-  margin-top: 30px;
+  margin-top: 8px;
   font-family: 'Press Start 2P', cursive;
   letter-spacing: 2px;
   font-size: 26px;
@@ -104,8 +104,13 @@ a {
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 24px;
-  /*background-color: #ff0000;*/
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.main-actions {
   flex-direction: column;
+  align-items: stretch;
 }
 
 #closeBar{
@@ -114,7 +119,7 @@ a {
 }
 
 .btn {
-  padding: 35px 20px;
+  padding: 14px 28px;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(135deg, rgba(53, 208, 255, 0.18), rgba(255, 126, 226, 0.18));
@@ -124,16 +129,16 @@ a {
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  font-size: 42px;
+  font-size: 16px;
 }
 
 #openGames{
-  margin-bottom: 30px;
-  margin-top: 10px;
+  margin-bottom: 12px;
+  margin-top: 0;
 }
 
 #openSettings{
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }
 
 .btn.secondary {
@@ -229,13 +234,13 @@ a {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px;
+  padding: 16px;
 }
 
 .stage-wrapper {
   position: relative;
   background: linear-gradient(180deg, #121424 0%, #0d0f1a 100%);
-  border-radius: 18px;
+  border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   overflow: auto;
   padding: 0px;
@@ -249,7 +254,7 @@ a {
   background-image: url('../images/level-select-bg.png');
   background-size: cover;
   background-position: center;
-  border-radius: 14px;
+  border-radius: 22px;
   border: 1px dashed rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
 }
@@ -261,6 +266,7 @@ a {
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 120px 120px;
   pointer-events: none;
+  display: none;
 }
 
 .stage-node {
@@ -289,26 +295,77 @@ a {
 
 .node-btn {
   background: transparent;
-  background-image: url('../images/button.png');
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
   box-shadow: none;
-  min-width: 120px;
-  height: 40px;
-  padding: 8px 16px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
   color: #03131f;
   font-weight: 600;
   font-size: 12px;
   cursor: pointer;
-  transition: none;
+  transition: opacity 0.08s ease;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
 }
 
 .node-btn:hover {
-  background-image: url('../images/button-pressed.png');
+  animation: btn-press-sequence 120ms ease-in-out forwards;
   transform: none;
   border-color: transparent;
+}
+
+.node-btn:active {
+  background-image: var(--btn-pressed-url);
+  animation: none;
+}
+
+.node-btn--cyan {
+  --btn-unpressed-url: url('../images/buttons/cyan_unpressed.png');
+  --btn-mid-url: url('../images/buttons/cyan_midpressed.png');
+  --btn-pressed-url: url('../images/buttons/cyan_pressed.png');
+  background-image: var(--btn-unpressed-url);
+}
+
+.node-btn--green {
+  --btn-unpressed-url: url('../images/buttons/green_unpressed.png');
+  --btn-mid-url: url('../images/buttons/green_midpressed.png');
+  --btn-pressed-url: url('../images/buttons/green_pressed.png');
+  background-image: var(--btn-unpressed-url);
+}
+
+.node-btn--orange {
+  --btn-unpressed-url: url('../images/buttons/orange_unpressed.png');
+  --btn-mid-url: url('../images/buttons/orange_midpressed.png');
+  --btn-pressed-url: url('../images/buttons/orange_pressed.png');
+  background-image: var(--btn-unpressed-url);
+}
+
+.node-btn--red {
+  --btn-unpressed-url: url('../images/buttons/red_unpressed.png');
+  --btn-mid-url: url('../images/buttons/red_midpressed.png');
+  --btn-pressed-url: url('../images/buttons/red_pressed.png');
+  background-image: var(--btn-unpressed-url);
+}
+
+@keyframes btn-press-sequence {
+  0% {
+    background-image: var(--btn-unpressed-url);
+    opacity: 1;
+  }
+  40% {
+    background-image: var(--btn-mid-url);
+    opacity: 1;
+  }
+  100% {
+    background-image: var(--btn-pressed-url);
+    opacity: 1;
+  }
 }
 
 .modal-backdrop {
@@ -359,6 +416,18 @@ a {
   height: 36px;
   border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  transition: background 0.2s ease;
+  padding: 0;
+}
+
+.modal .close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: none;
 }
 
 .modal img {
@@ -371,6 +440,38 @@ a {
 .modal .body {
   color: var(--muted);
   line-height: 1.6;
+}
+
+.modal .actions {
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.modal .btn {
+  padding: 14px 32px;
+  font-size: 15px;
+  min-width: 120px;
+}
+
+.modal .btn.play-btn {
+  background: linear-gradient(135deg, rgba(53, 208, 255, 0.3), rgba(255, 126, 226, 0.3));
+  background-image: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: auto;
+  height: auto;
+  padding: 14px 32px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.modal .btn.play-btn:hover {
+  background: linear-gradient(135deg, rgba(53, 208, 255, 0.4), rgba(255, 126, 226, 0.4));
+  background-image: none;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .tile-grid {
@@ -493,12 +594,39 @@ a {
 }
 
 #closeGame{
-  width: 30px;
-  height: 30px;
-  padding: 0px;
-  text-align: center;
-  margin: 20px 0px;
-  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  font-size: 20px;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+#closeGame:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+#closeGame:active {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(0.95);
+}
+
+#backbar{
+  background-color: #232020;
+  width: 100%;
+  height: 20px;
+}
+
+#progress{
+  height: 100%;
+  background: linear-gradient(to right, #1e66ae 0%, #dd5fd4 25%, #f99fb0 50%, #fed464 75%);
+  width: 0%;
 }
 
 @media (max-width: 720px) {

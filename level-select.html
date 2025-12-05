@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="assets/css/level-select.css" />
 </head>
 <body class="scanlines">
+  <div id="backbar">
+    <div id="progress">
+      <p id="progress_label"></p>
+    </div>
+  </div>
   <div class="page-shell grid-overlay">
     <div class="wave-bg"></div>
     <div class="game-header game-header--wide">
@@ -17,24 +22,24 @@
       <div class="actions" id="closeBar">
         <a class="btn icon-btn" id = "closeGame" href="index.html" aria-label="Close level selection">✕</a>
       </div>
-      <div class="stage-wrapper">
+      <div class="stage-wrapper" id="gameWindow">
         <div class="stage-track">
           <div class="track-grid"></div>
           <div class="stage-node" data-level-id="femmes-info" style="top: 34%; left: 8%;">
             <div class="node-label">Women &amp; IT</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--cyan"></button>
           </div>
           <div class="stage-node" data-level-id="decathlon" style="top: 70%; left: 30%;">
             <div class="node-label">Decathlon</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--green"></button>
           </div>
           <div class="stage-node" data-level-id="cve-explorer" style="top: 26%; left: 56%;">
             <div class="node-label">CVE Explorer</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--orange"></button>
           </div>
           <div class="stage-node" data-level-id="ergonomie" style="top: 72%; left: 82%;">
             <div class="node-label">Ergonomics</div>
-            <button class="node-btn"></button>
+            <button class="node-btn node-btn--red"></button>
           </div>
         </div>
       </div>
@@ -46,8 +51,9 @@
     <div class="modal" id="levelModal">
       <header>
         <h3>Mission Briefing</h3>
-        <button class="close-btn" aria-label="Close modal" >✕</button>
+        <button class="close-btn" aria-label="Close modal">✕</button>
       </header>
+<<<<<<< HEAD
       
       <div id="modal-content-area">
         
@@ -66,6 +72,17 @@
       <div class="body">Review the mission details and press Play when you are ready.</div>
       <div class="actions">
         <a class="btn play-btn" href="#">Play</a>
+=======
+     <video class="media-preview" controls style="display: none; width: 100%; border-radius: 8px; margin-bottom: 15px;">
+    Votre navigateur ne supporte pas la vidéo.
+      </video>
+
+    <img src="assets/images/femme.png" alt="Image du niveau" loading="lazy" style="margin-top: 15px;" />
+      <div class="body">Review the mission details and press Play when you are ready.</div>
+      <div class="actions">
+        <a class="btn play-btn" href="#">Play</a>
+        <button class="btn secondary close-btn">Cancel</button>
+>>>>>>> main
       </div>
     </div>
   </div>
