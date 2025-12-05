@@ -235,5 +235,8 @@ function attachEventListeners() {
 }
 
 // Initialize game on page load
-document.addEventListener('DOMContentLoaded', initGame);
+document.addEventListener('DOMContentLoaded', () => {
+  initGameMusic('linux-install.mp3');
+  initGame();
+});
 

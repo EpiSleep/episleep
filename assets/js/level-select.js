@@ -11,7 +11,7 @@ const levelData = [
     cta: 'Discover the challenge',
     image: 'assets/images/femme.png',
     video: 'assets/video/Video_sans_titre_Realisee_avec_Clipchamp.mp4', 
-    link: '/games/femmes-info/index.html'
+    link: 'games/femmes-info/index.html'
   },
   {
     id: 'decathlon',
@@ -19,7 +19,7 @@ const levelData = [
     description: 'Sporty mini-games fused with micro-optimization challenges. Get your algorithms and sneakers ready!',
     cta: 'Load the map',
     image: 'https://dummyimage.com/900x400/173f2d/ffffff&text=Decathlon',
-    link: '/games/decathlon/index.html'
+    link: 'games/decathlon/index.html'
   },
   {
     id: 'cve-explorer',
@@ -27,7 +27,7 @@ const levelData = [
     description: 'An arcade scanner to explore and visualize CVE vulnerabilities. Input, parsing, display — all in pixel-art.',
     cta: 'Launch scanner',
     image: 'https://dummyimage.com/900x400/1f243d/ffffff&text=CVE+Explorer',
-    link: '/games/cve-explorer/index.html'
+    link: 'games/cve-explorer/index.html'
   },
   {
     id: 'linux-install',
@@ -38,12 +38,12 @@ const levelData = [
     link: 'games/linux-install/index.html'
   },
   {
-    id: 'ergonomie',
+    id: 'ergonomics',
     title: 'Dark Pattern Lab',
-    description: 'Experiment with (and fix) devious interfaces. An ergonomics lab to put users back at the center.',
-    cta: 'Enter the lab',
-    image: 'https://dummyimage.com/900x400/3b1b2e/ffffff&text=Ergonomics',
-    link: '/games/ergonomie-dark-pattern/index.html'
+    description: 'Experience the world\'s most frustrating form! Validate a simple date through various complex steps. A perfect example of terrible UX design.',
+    cta: 'Start the challenge',
+    image: 'https://dummyimage.com/900x400/3b1b2e/ffffff&text=Dark+Pattern+Lab',
+    link: 'games/ergonomics/index.html'
   }
 ];
 

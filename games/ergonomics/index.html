@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dark Pattern Lab - Impossible Date Challenge</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+  
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+</head>
+<body class="scanlines">
+  <div class="page-shell grid-overlay">
+    <div class="wave-bg"></div>
+    <div class="game-shell card neon-border">
+      <div class="game-header">
+        <div>
+          <div class="logo">Dark Pattern Lab</div>
+          <p style="color: var(--muted);">Impossible Date Challenge — Validate your date through 7 hellish steps</p>
+        </div>
+        <a class="btn secondary" href="../../level-select.html">Back to map</a>
+      </div>
+
+      <!-- Progress Bar -->
+      <div id="backbar">
+        <div id="progress"></div>
+      </div>
+
+      <!-- Date Display (shown after initial input) -->
+      <div class="date-display" id="date-display-container" style="display: none;">
+        <strong>Your date:</strong> <span id="display-date"></span>
+      </div>
+
+      <!-- Error Message -->
+      <div id="error-message"></div>
+
+      <!-- STEP 1: Initial Date Input -->
+      <div class="game-step" id="step-initial">
+        <div class="step-container">
+          <h2 class="step-title">📅 Step 1: Enter a Date</h2>
+          <p class="step-hint">Let's start simple. Enter the date you want to validate.</p>
+
+          <form id="initial-form">
+            <div class="form-control">
+              <label for="date-input">Select a date:</label>
+              <input id="date-input" type="date" required />
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn">Validate</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STEP 2: Chinese Calendar -->
+      <div class="game-step" id="step-chinese">
+        <div class="step-container">
+          <h2 class="step-title">🐉 Step 2: Chinese Calendar</h2>
+          <p class="step-hint" id="chinese-hint">Convert your year to the Chinese calendar...</p>
+
+          <div class="helper-box">
+            <strong>Help:</strong>
+            The Chinese calendar combines 12 animals and 5 elements on a 60-year cycle.
+          </div>
+
+          <form id="chinese-form">
+            <div class="form-row">
+              <div class="form-control">
+                <label for="chinese-animal">Zodiac animal:</label>
+                <select id="chinese-animal" required>
+                  <option value="">-- Choose --</option>
+                  <option value="Rat">Rat</option>
+                  <option value="Ox">Ox</option>
+                  <option value="Tiger">Tiger</option>
+                  <option value="Rabbit">Rabbit</option>
+                  <option value="Dragon">Dragon</option>
+                  <option value="Snake">Snake</option>
+                  <option value="Horse">Horse</option>
+                  <option value="Goat">Goat</option>
+                  <option value="Monkey">Monkey</option>
+                  <option value="Rooster">Rooster</option>
+                  <option value="Dog">Dog</option>
+                  <option value="Pig">Pig</option>
+                </select>
+              </div>
+              <div class="form-control">
+                <label for="chinese-element">Element:</label>
+                <select id="chinese-element" required>
+                  <option value="">-- Choose --</option>
+                  <option value="Metal">Metal</option>
+                  <option value="Water">Water</option>
+                  <option value="Wood">Wood</option>
+                  <option value="Fire">Fire</option>
+                  <option value="Earth">Earth</option>
+                </select>
+              </div>
+            </div>
+            <div class="actions">
+              <button type="button" id="chinese-show-answer" class="btn secondary">💡 Show Answer</button>
+              <button type="submit" class="btn">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STEP 3: Islamic Calendar -->
+      <div class="game-step" id="step-islamic">
+        <div class="step-container">
+          <h2 class="step-title">🌙 Step 3: Islamic Calendar</h2>
+          <p class="step-hint" id="islamic-hint">Convert your year to the Hijri calendar...</p>
+
+          <div class="helper-box">
+            <strong>Approximate formula:</strong>
+            Hijri Year = (Gregorian Year - 622) × 1.030684
+          </div>
+
+          <form id="islamic-form">
+            <div class="form-control">
+              <label for="islamic-year">Hijri year (rounded):</label>
+              <input id="islamic-year" type="number" required placeholder="Ex: 1443" />
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STEP 4: Timezone Map -->
+      <div class="game-step" id="step-timezone">
+        <div class="step-container">
+          <h2 class="step-title">🗺️ Step 4: Timezone</h2>
+          <p class="step-hint">Click anywhere on the map to select your location. We'll detect your timezone automatically.</p>
+
+          <div class="helper-box">
+            <strong>Instructions:</strong>
+            Simply click on your approximate location on the world map below.
+          </div>
+
+          <div id="timezone-map"></div>
+
+          <div class="actions">
+            <button id="timezone-submit" class="btn" disabled>Confirm Timezone</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: Written Date -->
+      <div class="game-step" id="step-written">
+        <div class="step-container">
+          <h2 class="step-title">✍️ Step 5: Written Date</h2>
+          <p class="step-hint">Type EXACTLY the date shown below (copy-paste disabled).</p>
+
+          <div class="helper-box no-select">
+            <strong>Date to copy:</strong>
+            <div id="written-display" style="font-size: 16px; margin-top: 8px; color: var(--accent);"></div>
+          </div>
+
+          <form id="written-form">
+            <div class="form-control">
+              <label for="written-input">Retype the date:</label>
+              <input id="written-input" type="text" required autocomplete="off" />
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STEP 6: Roman Numerals -->
+      <div class="game-step" id="step-roman">
+        <div class="step-container">
+          <h2 class="step-title">🏛️ Step 6: Roman Numerals</h2>
+          <p class="step-hint" id="roman-hint">Convert the year to Roman numerals...</p>
+
+          <div class="helper-box">
+            <strong>Reference:</strong>
+            <div class="roman-help">
+              <span>I = 1</span>
+              <span>V = 5</span>
+              <span>X = 10</span>
+              <span>L = 50</span>
+              <span>C = 100</span>
+              <span>D = 500</span>
+              <span>M = 1000</span>
+            </div>
+          </div>
+
+          <form id="roman-form">
+            <div class="form-control">
+              <label for="roman-input">Year in Roman numerals:</label>
+              <input id="roman-input" type="text" required placeholder="Ex: MMXXIII" />
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STEP 7: Backwards Date -->
+      <div class="game-step" id="step-backwards">
+        <div class="step-container">
+          <h2 class="step-title">🔄 Step 7: Backwards Date</h2>
+          <p class="step-hint" id="backwards-hint">Final step! Write the date backwards...</p>
+
+          <div class="helper-box">
+            <strong>Example:</strong>
+            If the date is 25/12/2023, you must write: 3202/21/52
+          </div>
+
+          <form id="backwards-form">
+            <div class="form-control">
+              <label for="backwards-input">Reversed date:</label>
+              <input id="backwards-input" type="text" required placeholder="Ex: 3202/21/52" />
+            </div>
+            <div class="actions">
+              <button type="submit" class="btn">Finish!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STEP 8: Success -->
+      <div class="game-step" id="step-success">
+        <div class="step-container">
+          <div class="success-message">
+            <h2>🎉 Congratulations!</h2>
+            <p>You survived the world's most frustrating form!</p>
+            <p style="margin-top: 20px; color: var(--accent-2);">
+              Imagine if all online forms were like this... 😱
+            </p>
+            <p style="margin-top: 20px; font-size: 14px;">
+              This game illustrates the importance of good UX design.<br>
+              <strong>Dark patterns</strong> deliberately make user experience unnecessarily complex.
+            </p>
+            <div class="actions" style="justify-content: center; margin-top: 32px;">
+              <a class="btn" href="../../level-select.html">Back to map</a>
+              <button class="btn secondary" onclick="location.reload()">Restart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sticky-footer">
+        <div class="tag"><span class="glow-dot"></span>An extreme example of bad UX</div>
+        <a class="btn secondary" href="../../level-select.html">Give up</a>
+      </div>
+    </div>
+  </div>
+  <audio id="background-music" loop>
+    <source src="../../assets/music/ergonomics.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="../../assets/js/music-handler.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

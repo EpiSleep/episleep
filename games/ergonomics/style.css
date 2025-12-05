@@ -1,0 +1,218 @@
+/* Dark Pattern Lab - Game Specific Styles */
+
+.date-display {
+  background: rgba(53, 208, 255, 0.1);
+  border: 1px solid rgba(53, 208, 255, 0.3);
+  border-radius: 12px;
+  padding: 16px 24px;
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(53, 208, 255, 0.4);
+}
+
+.game-step {
+  display: none;
+}
+
+.step-container {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.step-title {
+  font-size: 22px;
+  margin: 0 0 12px;
+  color: var(--accent-2);
+  text-shadow: 0 0 10px rgba(255, 126, 226, 0.4);
+}
+
+.step-hint {
+  color: var(--muted);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.form-row .form-control {
+  flex: 1;
+  min-width: 200px;
+}
+
+#timezone-map {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 16px;
+  background: #1a1e2f;
+  overflow: hidden;
+}
+
+/* Override Leaflet default styles to match our theme */
+#timezone-map .leaflet-container {
+  background: #1a1e2f;
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+#timezone-map .leaflet-popup-content-wrapper {
+  background: rgba(26, 30, 47, 0.95);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+#timezone-map .leaflet-popup-tip {
+  background: rgba(26, 30, 47, 0.95);
+}
+
+#timezone-map .leaflet-control-zoom a {
+  background: rgba(26, 30, 47, 0.9);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#timezone-map .leaflet-control-zoom a:hover {
+  background: rgba(53, 208, 255, 0.2);
+  border-color: rgba(53, 208, 255, 0.4);
+}
+
+#error-message {
+  background: rgba(255, 0, 0, 0.15);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #ff6b6b;
+  margin-bottom: 16px;
+  display: none;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.success-message {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.success-message h2 {
+  font-size: 32px;
+  margin: 0 0 16px;
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(53, 208, 255, 0.6);
+}
+
+.success-message p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.helper-box {
+  background: rgba(255, 126, 226, 0.08);
+  border: 1px solid rgba(255, 126, 226, 0.2);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.helper-box strong {
+  color: var(--accent-2);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.roman-help {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.roman-help span {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+  font-family: monospace;
+}
+
+input[type="text"]:disabled,
+input[type="number"]:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Prevent text selection on certain inputs */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Progress bar specific for this game */
+#backbar {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+#progress {
+  transition: width 0.5s ease;
+}
+
+.calendar-selects {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.calendar-selects select {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Animation for step transitions */
+.game-step {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
