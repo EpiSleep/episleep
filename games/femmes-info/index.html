@@ -45,9 +45,39 @@
 
   <script src="../../assets/js/cookie-manager.js"></script>
   <script>
-    // Mark game as completed when page loads (placeholder game)
+    // Mark game as completed when user plays the video
     document.addEventListener('DOMContentLoaded', () => {
-      completeGame('woman');
+      const video = document.getElementById('game-video');
+      let hasCompleted = false;
+
+      if (video) {
+        // Complete game when video starts playing
+        video.addEventListener('play', () => {
+          if (!hasCompleted) {
+            hasCompleted = true;
+            const wasNew = completeGame('woman');
+
+            if (wasNew) {
+              console.log('🎥 Video played - Women & IT game completed!');
+
+              // Show a subtle success message
+              const message = document.createElement('div');
+              message.style.cssText = 'position: fixed; top: 20px; right: 20px; background: rgba(0,255,0,0.9); color: #000; padding: 15px 20px; border-radius: 8px; font-weight: bold; z-index: 1000; animation: fadeIn 0.3s ease-in;';
+              message.textContent = '🎉 Game Completed!';
+              document.body.appendChild(message);
+
+              // Remove message after 3 seconds
+              setTimeout(() => {
+                message.style.opacity = '0';
+                message.style.transition = 'opacity 0.5s';
+                setTimeout(() => message.remove(), 500);
+              }, 3000);
+            }
+          }
+        });
+
+        console.log('🎮 Women & IT game loaded. Play the video to complete!');
+      }
     });
   </script>
 </body>
